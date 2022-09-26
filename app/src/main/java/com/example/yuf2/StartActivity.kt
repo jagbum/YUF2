@@ -19,7 +19,6 @@ class StartActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
-
         if (auth.currentUser?.uid == null) {
             Handler().postDelayed({
                 startActivity(Intent(this, LoginActivity::class.java))

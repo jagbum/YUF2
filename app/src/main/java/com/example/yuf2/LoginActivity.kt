@@ -9,6 +9,8 @@ import androidx.core.app.ActivityCompat
 import com.example.yuf2.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import androidx.databinding.DataBindingUtil
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class LoginActivity : AppCompatActivity() {
@@ -20,24 +22,26 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        auth = Firebase.auth
+
         binding = DataBindingUtil.setContentView(this,R.layout.activity_login)
 
         binding.LoginBtn.setOnClickListener{
             val id = binding.id.text.toString()
             val password = binding.password.text.toString()
 
-            if(id != null&&password != null) {
-                auth.signInWithEmailAndPassword(id, password)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            val intent = Intent(this, MainActivity::class.java)
-                            startActivity(intent)
+            auth.signInWithEmailAndPassword(id, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
 
-                        } else {
-                            Toast.makeText(this, "아이디나 비밀번호가 틀렸습니다.", Toast.LENGTH_SHORT).show()
-                        }
+                    } else {
+                        Toast.makeText(this, "아이디나 비밀번호가 틀렸습니다.", Toast.LENGTH_SHORT).show()
                     }
-            }
+
+                }
+
         }
 
         binding.JoinBtn.setOnClickListener{

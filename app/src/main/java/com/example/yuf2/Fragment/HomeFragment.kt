@@ -5,9 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import com.example.yuf2.R
+import com.example.yuf2.databinding.ActivityLoginBinding
+import com.example.yuf2.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
+
+    private lateinit var binding : FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,8 +23,30 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+
+        binding.setting.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_settingFragment)
+        }
+
+        binding.notification.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_notiFragment)
+        }
+
+        binding.friend.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_friendFragment)
+        }
+
+        binding.chatting.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_chatFragment)
+        }
+
+        binding.board.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
+        }
+
+        return binding.root
     }
 
 }

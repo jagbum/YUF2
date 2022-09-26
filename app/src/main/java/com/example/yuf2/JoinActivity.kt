@@ -36,7 +36,7 @@ class JoinActivity : AppCompatActivity() {
             var checkID = true
 
             if(!password.equals(confirm)){
-                Toast.makeText(this, "비밀번호가 틀립니다. \n같은 비밀번호르 입력해주세요.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "비밀번호가 틀립니다. \n같은 비밀번호를 입력해주세요.", Toast.LENGTH_LONG).show()
                 checkID = false
             }
 
