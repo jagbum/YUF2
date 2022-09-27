@@ -92,6 +92,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                 android:id="@+id/temBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="다음"/>
 
 
