@@ -48,11 +48,27 @@
                         android:hint="이름" />
 
                     <EditText
+                        android:id="@+id/nickname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:hint="닉네임" />
+
+                    <EditText
+                        android:id="@+id/studentID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:hint="학번" />
+
+
+                    <EditText
                         android:id="@+id/ID"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:hint="아이디" />
+
 
                     <EditText
                         android:id="@+id/PW"

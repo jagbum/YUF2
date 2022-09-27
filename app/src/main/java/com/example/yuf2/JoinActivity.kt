@@ -28,6 +28,8 @@ class JoinActivity : AppCompatActivity() {
 
         binding.join.setOnClickListener{
             val name = binding.name.text.toString()
+            val nickname = binding.nickname.text.toString()
+            val studentID = binding.studentID.text.toString()
             val email = binding.ID.text.toString()
             val password = binding.PW.text.toString()
             val confirm = binding.PWCheck.text.toString()
@@ -45,7 +47,7 @@ class JoinActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
 
-                                Database.user.push().setValue(userdata(name, email,password, uid))
+                                Database.user.push().setValue(userdata(name,nickname, studentID, email,password, uid))
                                 Toast.makeText(this,"회원가입을 완료했습니다!\n 로그인 해주세요!", Toast.LENGTH_LONG).show()
 
 

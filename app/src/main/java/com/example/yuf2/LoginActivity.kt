@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.JoinBtn.setOnClickListener{
-            val intent = Intent(this, JoinActivity::class.java)
+            val intent = Intent(this, TermsActivity::class.java)
             startActivity(intent)
         }
 
