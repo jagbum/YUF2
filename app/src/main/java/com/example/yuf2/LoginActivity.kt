@@ -49,6 +49,11 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.SearchIDBtn.setOnClickListener{
+            val intent = Intent(this, SearchIDActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private var i=0

@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.yuf2.databinding.ActivityJoinBinding
 import com.example.yuf2.dataclass.Database
-import com.example.yuf2.dataclass.userdata
+import com.example.yuf2.dataclass.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -33,7 +33,6 @@ class JoinActivity : AppCompatActivity() {
             val email = binding.ID.text.toString()
             val password = binding.PW.text.toString()
             val confirm = binding.PWCheck.text.toString()
-            val uid = auth.currentUser?.uid.toString()
 
             var checkID = true
 
@@ -47,7 +46,7 @@ class JoinActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
 
-                                Database.user.push().setValue(userdata(name,nickname, studentID, email,password, uid))
+                                Database.user.child(studentID).setValue(User(name,nickname, studentID, email,password))
                                 Toast.makeText(this,"회원가입을 완료했습니다!\n 로그인 해주세요!", Toast.LENGTH_LONG).show()
 
 
