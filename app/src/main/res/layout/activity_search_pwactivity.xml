@@ -5,7 +5,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchIDActivity">
+    tools:context=".SearchPWActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -29,11 +29,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:layout_marginTop="172dp"
         android:hint="학번"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.284"
-        tools:layout_editor_absoluteX="-8dp" />
+        app:layout_constraintVertical_bias="0.303"
+        tools:layout_editor_absoluteX="9dp" />
 
     <EditText
         android:id="@+id/name"
@@ -43,15 +44,24 @@
         android:hint="이름"
         app:layout_constraintTop_toBottomOf="@+id/studentID" />
 
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="이메일"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
     <Button
         android:layout_margin="50dp"
-        android:id="@+id/FindID"
+        android:id="@+id/FindPW"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="아이디 찾기"
+        android:text="비밀번호 찾기"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/studentID" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

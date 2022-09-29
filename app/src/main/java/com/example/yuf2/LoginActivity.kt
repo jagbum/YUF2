@@ -54,6 +54,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.SearchPWBtn.setOnClickListener{
+            val intent = Intent(this, SearchPWActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private var i=0

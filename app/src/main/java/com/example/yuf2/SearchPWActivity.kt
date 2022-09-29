@@ -4,26 +4,27 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import com.example.yuf2.databinding.ActivityLoginBinding
 import com.example.yuf2.databinding.ActivitySearchIdactivityBinding
+import com.example.yuf2.databinding.ActivitySearchPwactivityBinding
 
-class SearchIDActivity : AppCompatActivity() {
+class SearchPWActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivitySearchIdactivityBinding
+    private lateinit var binding : ActivitySearchPwactivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search_idactivity)
+        setContentView(R.layout.activity_search_pwactivity)
 
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_search_idactivity)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_search_pwactivity)
 
-        binding.FindID.setOnClickListener {
+        binding.FindPW.setOnClickListener {
             val studentID = binding.studentID.text.toString()
             val name = binding.name.text.toString()
-            val intent = Intent(this, IDActivity::class.java)
+            val id = binding.email.text.toString()
+            val intent = Intent(this, PWActivity::class.java)
             intent.putExtra("studentID",studentID)
             intent.putExtra("name",name)
-
+            intent.putExtra("id",id)
             startActivity(intent)
         }
 
