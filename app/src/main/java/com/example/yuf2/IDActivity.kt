@@ -48,7 +48,7 @@ class IDActivity : AppCompatActivity() {
                     }
 
                 }catch (e: Exception){
-
+                    binding.id.setText("잘못입력하였습니다.")
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

@@ -49,7 +49,7 @@ class PWActivity : AppCompatActivity() {
                 }
 
             }catch (e: Exception){
-
+                binding.pw.setText("잘못입력하였습니다.")
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
