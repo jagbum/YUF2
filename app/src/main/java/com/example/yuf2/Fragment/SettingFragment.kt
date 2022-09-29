@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.example.yuf2.MainActivity
+import com.example.yuf2.OKActivity
 import com.example.yuf2.R
 import com.example.yuf2.StartActivity
 import com.example.yuf2.databinding.FragmentBoardBinding
@@ -64,8 +66,19 @@ class SettingFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.OK.setOnClickListener{
+            val presentuid = auth.currentUser?.uid.toString()
+
+            val intent = Intent(context, OKActivity::class.java)
+            intent.putExtra("presentuid",presentuid)
+
+            startActivity(intent)
+
+        }
+
         return binding.root
     }
+
 
 
 }

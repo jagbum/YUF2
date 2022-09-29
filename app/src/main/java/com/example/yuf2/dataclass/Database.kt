@@ -9,6 +9,7 @@ class Database {
     companion object{
 
         val user = Firebase.database.getReference("user")
+        val nickname = Firebase.database.getReference("nickname")
 
 
 

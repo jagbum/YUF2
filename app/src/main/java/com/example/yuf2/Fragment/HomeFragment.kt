@@ -10,13 +10,25 @@ import androidx.navigation.findNavController
 import com.example.yuf2.R
 import com.example.yuf2.databinding.ActivityLoginBinding
 import com.example.yuf2.databinding.FragmentHomeBinding
+import com.example.yuf2.dataclass.Database
+import com.example.yuf2.dataclass.User
+import com.example.yuf2.dataclass.nickname
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+import java.lang.Exception
 
 class HomeFragment : Fragment() {
+    private lateinit var auth: FirebaseAuth
 
     private lateinit var binding : FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -45,7 +57,6 @@ class HomeFragment : Fragment() {
         binding.board.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
         }
-
         return binding.root
     }
 

@@ -24,6 +24,9 @@
             android:name=".SearchPWActivity"
             android:exported="false" />
         <activity
+            android:name=".OKActivity"
+            android:exported="false" />
+        <activity
             android:name=".IDActivity"
             android:exported="false" />
         <activity

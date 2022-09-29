@@ -5,6 +5,5 @@ data class User(
     var nickname: String="",
     var studentID: String="",
     var id: String="",
-    var password: String="",
-    var uid: String=""
+    var password: String=""
 )
