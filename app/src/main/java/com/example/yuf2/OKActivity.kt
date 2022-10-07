@@ -34,7 +34,7 @@ class OKActivity : AppCompatActivity() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) =try {
 
-                val item = dataSnapshot.getValue(nickname::class.java)
+                val item = dataSnapshot.getValue(User::class.java)
 
                 binding.nickname.setText(item!!.nickname)
 

@@ -50,7 +50,7 @@ class JoinActivity : AppCompatActivity() {
                             var uid = task.getResult().getUser()?.getUid().toString()
 
                             Database.user.child(studentID).setValue(User(name,nickname, studentID, email,password))
-                            Database.nickname.child(uid).setValue(nickname(nickname))
+                            Database.nickname.child(uid).setValue(User(name,nickname, studentID, email,password))
                                 Toast.makeText(this,"회원가입을 완료했습니다!\n 로그인 해주세요!", Toast.LENGTH_LONG).show()
 
 
