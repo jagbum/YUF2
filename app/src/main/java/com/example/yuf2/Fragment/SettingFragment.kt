@@ -6,14 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import com.example.yuf2.MainActivity
+import com.example.yuf2.Board.WriteBoardActivity
 import com.example.yuf2.OKActivity
 import com.example.yuf2.R
 import com.example.yuf2.StartActivity
-import com.example.yuf2.databinding.FragmentBoardBinding
 import com.example.yuf2.databinding.FragmentSettingBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -35,7 +33,6 @@ class SettingFragment : Fragment() {
     ): View? {
         auth = Firebase.auth
 
-        val view = inflater.inflate( R.layout.fragment_setting ,container, false)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting, container, false)
 
         binding.chatting.setOnClickListener {
@@ -73,6 +70,7 @@ class SettingFragment : Fragment() {
             intent.putExtra("presentuid",presentuid)
 
             startActivity(intent)
+
 
         }
 

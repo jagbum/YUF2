@@ -10,7 +10,7 @@ class Database {
 
         val user = Firebase.database.getReference("user")
         val nickname = Firebase.database.getReference("nickname")
-
+        val Board = Firebase.database.getReference("board")
 
 
     }
