@@ -10,6 +10,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/YUF2/app/src/main/res/layout/activity_main.xml" value="0.1778115501519757" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YUF2/app/src/main/res/layout/activity_main3.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YUF2/app/src/main/res/layout/activity_pwactivity.xml" value="0.27355072463768115" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/YUF2/app/src/main/res/layout/activity_read_board.xml" value="0.22" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YUF2/app/src/main/res/layout/activity_search_idactivity.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YUF2/app/src/main/res/layout/activity_search_idavtivity.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YUF2/app/src/main/res/layout/activity_start.xml" value="0.1707193515704154" />
@@ -18,7 +19,8 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/YUF2/app/src/main/res/layout/activity_write_board.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YUF2/app/src/main/res/layout/activity_write_post.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YUF2/app/src/main/res/layout/boardlist.xml" value="0.2967189728958631" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/YUF2/app/src/main/res/layout/fragment_board.xml" value="0.33" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/YUF2/app/src/main/res/layout/comment.xml" value="0.33" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/YUF2/app/src/main/res/layout/fragment_board.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YUF2/app/src/main/res/layout/fragment_first.xml" value="0.1778115501519757" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YUF2/app/src/main/res/layout/fragment_setting.xml" value="0.17806484295845998" />
       </map>

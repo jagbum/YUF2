@@ -11,9 +11,13 @@ import androidx.navigation.findNavController
 import com.example.yuf2.OKActivity
 import com.example.yuf2.R
 import com.example.yuf2.databinding.FragmentBoardBinding
+import com.example.yuf2.dataclass.Database
 import com.example.yuf2.dataclass.post
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 
 class BoardFragment : Fragment() {
@@ -38,15 +42,16 @@ class BoardFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_board, container, false)
 
-       /* BoardAdpater = BoardAdapter(boarddata)
+        BoardAdpater = BoardAdapter(boarddata)
 
         binding.post.adapter = BoardAdpater
 
-        /binding.post.setOnItemClickListener{ adapterView, view, i, l ->
+        binding.post.setOnItemClickListener{ adapterView, view, i, l ->
             val intent = Intent(context, ReadBoardActivity::class.java)
             intent.putExtra("key", boardKeyList[i])
+            intent.putExtra("currentUID", auth.currentUser?.uid.toString())
             startActivity(intent)
-        }*/
+        }
 
         binding.setting.setOnClickListener {
             it.findNavController().navigate(R.id.action_boardFragment_to_settingFragment)
@@ -72,6 +77,8 @@ class BoardFragment : Fragment() {
             WritePost()
         }
 
+        getBoard()
+
         return binding.root
     }
 
@@ -82,6 +89,35 @@ class BoardFragment : Fragment() {
         intent.putExtra("presentuid",presentuid)
 
         startActivity(intent)
+    }
+
+    fun getBoard(){
+
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                boarddata.clear()
+
+                for (dataModel in dataSnapshot.children) {
+
+                    val item = dataModel.getValue(post::class.java)
+                    boarddata.add(item!!)
+                    boardKeyList.add(dataModel.key.toString())
+
+                }
+                boardKeyList.reverse()
+                boarddata.reverse()
+                BoardAdpater.notifyDataSetChanged()
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+        }
+
+        Database.Board.addValueEventListener(postListener)
+
     }
 
 
