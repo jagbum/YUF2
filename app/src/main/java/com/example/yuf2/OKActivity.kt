@@ -3,12 +3,9 @@ package com.example.yuf2
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import com.example.yuf2.databinding.ActivityIdactivityBinding
 import com.example.yuf2.databinding.ActivityOkactivityBinding
 import com.example.yuf2.dataclass.Database
 import com.example.yuf2.dataclass.User
-import com.example.yuf2.dataclass.nickname
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener

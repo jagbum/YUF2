@@ -9,7 +9,6 @@ import com.example.yuf2.R
 import com.example.yuf2.databinding.ActivityWriteBoardBinding
 import com.example.yuf2.dataclass.Database
 import com.example.yuf2.dataclass.User
-import com.example.yuf2.dataclass.nickname
 import com.example.yuf2.dataclass.post
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
