@@ -37,15 +37,10 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:descendantFocusability="blocksDescendants"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants"
                 android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
 
                 <TextView
                     android:id="@+id/nickname"
@@ -54,7 +49,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="nickname"
                     android:textColor="@color/black"
-                    android:textSize="25dp"/>
+                    android:textSize="25dp" />
 
 
                 <TextView
@@ -77,7 +72,6 @@
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     app:layout_constraintTop_toBottomOf="@+id/readTitle" />
-
 
 
             </LinearLayout>
