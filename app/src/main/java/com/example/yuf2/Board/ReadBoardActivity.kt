@@ -90,8 +90,8 @@ class ReadBoardActivity : AppCompatActivity() {
                     auth = FirebaseAuth.getInstance()
 
 
-                    /*val presentuid = auth.currentUser?.uid.toString()
-                    val datauid = item.uid*/
+                    val presentuid = auth.currentUser?.uid.toString()
+                    val datauid = item.uid
 
                 }catch (e: Exception){
 
