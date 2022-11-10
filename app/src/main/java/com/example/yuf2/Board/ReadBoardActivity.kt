@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.example.yuf2.R
@@ -14,13 +15,11 @@ import com.example.yuf2.dataclass.User
 import com.example.yuf2.dataclass.comment
 import com.example.yuf2.dataclass.post
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 
 class ReadBoardActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-
+    private lateinit var DB: FirebaseDatabase
     private lateinit var binding : ActivityReadBoardBinding
 
     private lateinit var key :String
@@ -28,6 +27,7 @@ class ReadBoardActivity : AppCompatActivity() {
     private val commentList = mutableListOf<comment>()
     private lateinit var uid :String
     private lateinit var currentNickname :String
+    private var likepoint :Int=0
 
     private lateinit var commentAdapter: CommentAdapter
 
@@ -45,6 +45,10 @@ class ReadBoardActivity : AppCompatActivity() {
 
         key = intent.getStringExtra("key").toString()
 
+        binding.like.setOnClickListener {
+            onStarClicked(Database.Board.child(key))
+        }
+
         binding.commentSave.setOnClickListener{
             saveComment()
             var keyboard: InputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
@@ -56,6 +60,36 @@ class ReadBoardActivity : AppCompatActivity() {
         getComment(key)
     }
 
+    private fun onStarClicked(postRef: DatabaseReference) {
+        // ...
+        postRef.runTransaction(object : Transaction.Handler {
+            override fun doTransaction(mutableData: MutableData): Transaction.Result {
+                val p = mutableData.getValue(post::class.java)
+                    ?: return Transaction.success(mutableData)
+
+                if (p.stars.containsKey(uid)) {
+                    // Unstar the post and remove self from stars
+                    p.starCount = p.starCount - 1
+                    p.stars.remove(uid)
+                } else {
+                    // Star the post and add self to stars
+                    p.starCount = p.starCount + 1
+                    p.stars[uid] = true
+                }
+
+                // Set value and report transaction success
+                mutableData.value = p
+                return Transaction.success(mutableData)
+            }
+
+            override fun onComplete(
+                databaseError: DatabaseError?,
+                committed: Boolean,
+                currentData: DataSnapshot?
+            ) {
+            }
+        })
+    }
     fun getnick(uid: String){
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -87,8 +121,8 @@ class ReadBoardActivity : AppCompatActivity() {
                     binding.nickname.text = item!!.nickname
                     binding.Title.text = item!!.title
                     binding.Content.text = item!!.content
+                    binding.like.text = item!!.starCount.toString()
                     auth = FirebaseAuth.getInstance()
-
 
                     val presentuid = auth.currentUser?.uid.toString()
                     val datauid = item.uid

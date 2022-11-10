@@ -47,7 +47,7 @@ class WriteBoardActivity : AppCompatActivity() {
 
         if(title!=null&&content!=null){
 
-            Database.Board.push().setValue(post(title, content, nickname, uid))
+            Database.Board.push().setValue(post(title, content, nickname, uid, 0))
             finish()
 
         }else{

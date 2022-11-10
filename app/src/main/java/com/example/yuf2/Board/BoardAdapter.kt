@@ -34,6 +34,9 @@ class BoardAdapter(val boardlist : MutableList<post>) : BaseAdapter() {
         val content = view?.findViewById<TextView>(R.id.content)
         content!!.text = boardlist[p0].content
 
+        val like = view?.findViewById<TextView>(R.id.like)
+        like!!.text = boardlist[p0].starCount.toString()
+
         return view!!
     }
 }
