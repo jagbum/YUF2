@@ -8,13 +8,13 @@ import android.widget.TextView
 import com.example.yuf2.R
 import com.example.yuf2.dataclass.post
 
-class BoardAdapter(val boards : MutableList<post>) : BaseAdapter() {
+class BoardAdapter(val board : MutableList<post>) : BaseAdapter() {
     override fun getCount(): Int {
-        return boards.size
+        return board.size
     }
 
     override fun getItem(p0: Int): Any {
-        return boards[p0]
+        return board[p0]
     }
 
     override fun getItemId(p0: Int): Long {
@@ -29,13 +29,13 @@ class BoardAdapter(val boards : MutableList<post>) : BaseAdapter() {
         }
 
         val title = view?.findViewById<TextView>(R.id.title)
-        title!!.text = boards[p0].title
+        title!!.text = board[p0].title
 
         val content = view?.findViewById<TextView>(R.id.content)
-        content!!.text = boards[p0].content
+        content!!.text = board[p0].content
 
         val like = view?.findViewById<TextView>(R.id.like)
-        like!!.text = boards[p0].starCount.toString()
+        like!!.text = board[p0].starCount.toString()
 
         return view!!
     }

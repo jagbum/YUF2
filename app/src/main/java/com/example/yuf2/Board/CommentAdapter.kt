@@ -33,7 +33,7 @@ class CommentAdapter (val comments: MutableList<comment>) : BaseAdapter() {
         nickname!!.text = comments[p0].nickname
 
         val comment = view?.findViewById<TextView>(R.id.comment)
-        comment!!.text = comments[p0].comment
+        comment!!.text = comments[p0].nickname
 
         return view!!
     }

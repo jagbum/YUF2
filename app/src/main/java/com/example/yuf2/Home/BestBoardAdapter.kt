@@ -8,13 +8,13 @@ import android.widget.TextView
 import com.example.yuf2.R
 import com.example.yuf2.dataclass.bestPost
 
-class BestBoardAdapter(val boardlist : MutableList<bestPost>) : BaseAdapter() {
+class BestBoardAdapter(val bestBoard : MutableList<bestPost>) : BaseAdapter() {
     override fun getCount(): Int {
-        return boardlist.size
+        return bestBoard.size
     }
 
     override fun getItem(p0: Int): Any {
-        return boardlist[p0]
+        return bestBoard[p0]
     }
 
     override fun getItemId(p0: Int): Long {
@@ -29,13 +29,13 @@ class BestBoardAdapter(val boardlist : MutableList<bestPost>) : BaseAdapter() {
         }
 
         val title = view?.findViewById<TextView>(R.id.title)
-        title!!.text = boardlist[p0].title
+        title!!.text = bestBoard[p0].title
 
         val content = view?.findViewById<TextView>(R.id.content)
-        content!!.text = boardlist[p0].content
+        content!!.text = bestBoard[p0].content
 
         val like = view?.findViewById<TextView>(R.id.like)
-        like!!.text = boardlist[p0].starCount.toString()
+        like!!.text = bestBoard[p0].starCount.toString()
 
         return view!!
     }
