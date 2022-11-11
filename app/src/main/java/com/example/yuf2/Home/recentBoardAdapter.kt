@@ -7,13 +7,14 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.yuf2.R
 import com.example.yuf2.dataclass.bestPost
+import com.example.yuf2.dataclass.post
 
-class recentBoardAdapter (val board : MutableList<bestPost>) : BaseAdapter() {
+class recentBoardAdapter (val board : MutableList<post>) : BaseAdapter() {
     override fun getCount(): Int {
-        if(board.size<=4) {
+        if(board.size<=5) {
             return board.size
         }else{
-            return 4
+            return 5
         }
     }
 
@@ -35,11 +36,7 @@ class recentBoardAdapter (val board : MutableList<bestPost>) : BaseAdapter() {
         val title = view?.findViewById<TextView>(R.id.title)
         title!!.text = board[p0].title
 
-        val content = view?.findViewById<TextView>(R.id.content)
-        content!!.text = board[p0].content
-
-        val like = view?.findViewById<TextView>(R.id.like)
-        like!!.text = board[p0].starCount.toString()
+        view?.setOnTouchListener(View.OnTouchListener { v, event -> true })
 
         return view!!
     }

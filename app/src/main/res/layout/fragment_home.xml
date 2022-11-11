@@ -6,12 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Home.HomeFragment">
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
         <TextView
+            android:layout_weight="0"
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,67 +25,63 @@
 
 
         <LinearLayout
+            android:layout_weight="6"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="60dp"
-            android:layout_marginTop="30dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_marginTop="10dp"
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/BoardArea"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
 
                 <TextView
-                    android:id="@+id/currentBoard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:text="게시판"
-                    android:textColor="@color/black"
-                    android:textSize="20dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:text="실시간 게시판"
+                    android:textSize="25dp"
+                    android:gravity="left"/>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <ListView
+                    android:id="@+id/recentBoard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-            <ListView
-                android:id="@+id/currentPost"
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/bestBoardArea"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/bestBoard"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_height="30dp"
                     android:text="베스트 게시판"
-                    android:textColor="@color/black"
-                    android:textSize="20dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:textSize="25dp"
+                    android:gravity="left"/>
 
-            <ListView
-                android:id="@+id/currentBestPost"
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
+                <ListView
+                    android:id="@+id/bestBoard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-            </ListView>
-
+            </LinearLayout>
 
         </LinearLayout>
 
-
-
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             app:layout_constraintBottom_toBottomOf="parent">
@@ -151,7 +150,7 @@
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </FrameLayout>
 </layout>

@@ -10,10 +10,10 @@ import com.example.yuf2.dataclass.bestPost
 
 class recentBestBoardAdapter (val board : MutableList<bestPost>) : BaseAdapter() {
     override fun getCount(): Int {
-        if(board.size<=4) {
+        if(board.size<=5) {
             return board.size
         }else{
-            return 4
+            return 5
         }
     }
 
@@ -29,17 +29,13 @@ class recentBestBoardAdapter (val board : MutableList<bestPost>) : BaseAdapter()
 
         var view = p1
         if(view == null){
-            view = LayoutInflater.from(p2?.context).inflate(R.layout.bestboerd_item, p2, false)
+            view = LayoutInflater.from(p2?.context).inflate(R.layout.recentposts_item, p2, false)
         }
 
         val title = view?.findViewById<TextView>(R.id.title)
         title!!.text = board[p0].title
 
-        val content = view?.findViewById<TextView>(R.id.content)
-        content!!.text = board[p0].content
-
-        val like = view?.findViewById<TextView>(R.id.like)
-        like!!.text = board[p0].starCount.toString()
+        view?.setOnTouchListener(View.OnTouchListener { v, event -> true })
 
         return view!!
     }
