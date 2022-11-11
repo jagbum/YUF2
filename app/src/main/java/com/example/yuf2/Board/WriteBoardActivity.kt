@@ -2,13 +2,13 @@ package com.example.yuf2.Board
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.yuf2.R
 import com.example.yuf2.databinding.ActivityWriteBoardBinding
 import com.example.yuf2.dataclass.Database
 import com.example.yuf2.dataclass.User
+import com.example.yuf2.dataclass.bestPost
 import com.example.yuf2.dataclass.post
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot

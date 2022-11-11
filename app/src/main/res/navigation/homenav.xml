@@ -73,7 +73,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.yuf2.Fragment.HomeFragment"
+        android:name="com.example.yuf2.Home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action

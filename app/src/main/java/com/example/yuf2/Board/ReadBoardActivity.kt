@@ -10,16 +10,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.example.yuf2.R
 import com.example.yuf2.databinding.ActivityReadBoardBinding
-import com.example.yuf2.dataclass.Database
-import com.example.yuf2.dataclass.User
-import com.example.yuf2.dataclass.comment
-import com.example.yuf2.dataclass.post
+import com.example.yuf2.dataclass.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class ReadBoardActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    private lateinit var DB: FirebaseDatabase
     private lateinit var binding : ActivityReadBoardBinding
 
     private lateinit var key :String
@@ -27,7 +23,11 @@ class ReadBoardActivity : AppCompatActivity() {
     private val commentList = mutableListOf<comment>()
     private lateinit var uid :String
     private lateinit var currentNickname :String
-    private var likepoint :Int=0
+
+    private lateinit var postTitle :String
+    private lateinit var content :String
+    private lateinit var postNickname :String
+    private lateinit var postUID :String
 
     private lateinit var commentAdapter: CommentAdapter
 
@@ -77,6 +77,10 @@ class ReadBoardActivity : AppCompatActivity() {
                     p.stars[uid] = true
                 }
 
+                if(p.starCount>=2){
+                    Database.BestBoard.child(key).setValue(bestPost(postTitle,content,postNickname,p.starCount))
+                }
+
                 // Set value and report transaction success
                 mutableData.value = p
                 return Transaction.success(mutableData)
@@ -118,6 +122,11 @@ class ReadBoardActivity : AppCompatActivity() {
                 try {
                     val item = dataSnapshot.getValue(post::class.java)
 
+                    postNickname = item!!.nickname
+                    postTitle = item!!.title
+                    content = item!!.content
+                    postUID = item!!.uid
+
                     binding.nickname.text = item!!.nickname
                     binding.Title.text = item!!.title
                     binding.Content.text = item!!.content
@@ -125,7 +134,7 @@ class ReadBoardActivity : AppCompatActivity() {
                     auth = FirebaseAuth.getInstance()
 
                     val presentuid = auth.currentUser?.uid.toString()
-                    val datauid = item.uid
+                    val datauid = item!!.uid
 
                 }catch (e: Exception){
 
@@ -137,7 +146,38 @@ class ReadBoardActivity : AppCompatActivity() {
             }
         }
         Database.Board.child(key).addValueEventListener(postListener)
+    }
 
+    fun getlike(key:String){
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                try {
+                    val item = dataSnapshot.getValue(post::class.java)
+
+                    postNickname = item!!.nickname
+                    postTitle = item!!.title
+                    content = item!!.content
+                    postUID = item!!.uid
+
+                    binding.nickname.text = item!!.nickname
+                    binding.Title.text = item!!.title
+                    binding.Content.text = item!!.content
+                    auth = FirebaseAuth.getInstance()
+
+                    val presentuid = auth.currentUser?.uid.toString()
+                    val datauid = item!!.uid
+
+                }catch (e: Exception){
+
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+        }
+        Database.Board.child(key).addValueEventListener(postListener)
     }
 
     fun saveComment(){

@@ -1,4 +1,4 @@
-package com.example.yuf2.Board
+package com.example.yuf2.Home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.yuf2.R
-import com.example.yuf2.dataclass.post
+import com.example.yuf2.dataclass.bestPost
 
-class BoardAdapter(val boards : MutableList<post>) : BaseAdapter() {
+class BestBoardAdapter(val boardlist : MutableList<bestPost>) : BaseAdapter() {
     override fun getCount(): Int {
-        return boards.size
+        return boardlist.size
     }
 
     override fun getItem(p0: Int): Any {
-        return boards[p0]
+        return boardlist[p0]
     }
 
     override fun getItemId(p0: Int): Long {
@@ -25,17 +25,17 @@ class BoardAdapter(val boards : MutableList<post>) : BaseAdapter() {
 
         var view = p1
         if(view == null){
-            view = LayoutInflater.from(p2?.context).inflate(R.layout.board_item, p2, false)
+            view = LayoutInflater.from(p2?.context).inflate(R.layout.bestboerd_item, p2, false)
         }
 
         val title = view?.findViewById<TextView>(R.id.title)
-        title!!.text = boards[p0].title
+        title!!.text = boardlist[p0].title
 
         val content = view?.findViewById<TextView>(R.id.content)
-        content!!.text = boards[p0].content
+        content!!.text = boardlist[p0].content
 
         val like = view?.findViewById<TextView>(R.id.like)
-        like!!.text = boards[p0].starCount.toString()
+        like!!.text = boardlist[p0].starCount.toString()
 
         return view!!
     }

@@ -1,5 +1,6 @@
-package com.example.yuf2.Fragment
+package com.example.yuf2.Home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.example.yuf2.Board.WriteBoardActivity
 import com.example.yuf2.R
 import com.example.yuf2.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -27,6 +29,11 @@ class HomeFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+
+        binding.bestPost.setOnClickListener {
+            val intent = Intent(context, BestBoardActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.setting.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_settingFragment)
