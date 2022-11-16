@@ -1,5 +1,6 @@
 package com.example.yuf2.Board
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.example.yuf2.R
 import com.example.yuf2.databinding.ActivityReadBoardBinding
@@ -55,6 +57,15 @@ class ReadBoardActivity : AppCompatActivity() {
 
             keyboard.hideSoftInputFromWindow(currentFocus?.windowToken,0)
         }
+
+        binding.delete.setOnClickListener {
+            removePost()
+        }
+
+        binding.edit.setOnClickListener {
+            editPost()
+        }
+
         getnick(uid)
         getData(key)
         getComment(key)
@@ -78,7 +89,10 @@ class ReadBoardActivity : AppCompatActivity() {
                 }
 
                 if(p.starCount>=2){
-                    Database.BestBoard.child(key).setValue(bestPost(postTitle,content,postNickname,p.starCount))
+                    Database.BestBoard.child(key).setValue(bestPost(postTitle,content,postNickname,p.starCount,key))
+                }
+                else{
+                    Database.BestBoard.child(key).removeValue()
                 }
 
                 // Set value and report transaction success
@@ -94,6 +108,7 @@ class ReadBoardActivity : AppCompatActivity() {
             }
         })
     }
+
     fun getnick(uid: String){
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -134,7 +149,15 @@ class ReadBoardActivity : AppCompatActivity() {
                     auth = FirebaseAuth.getInstance()
 
                     val presentuid = auth.currentUser?.uid.toString()
-                    val datauid = item!!.uid
+                    val postuid = item!!.uid
+
+                    if(postuid.equals(presentuid)){
+
+                        binding.delete.isVisible = true
+                        binding.edit.isVisible = true
+
+                    }
+
 
                 }catch (e: Exception){
 
@@ -148,37 +171,20 @@ class ReadBoardActivity : AppCompatActivity() {
         Database.Board.child(key).addValueEventListener(postListener)
     }
 
-    fun getlike(key:String){
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
+    fun removePost(){
+        Database.Board.child(key).removeValue()
+        Database.BestBoard.child(key).removeValue()
 
-                try {
-                    val item = dataSnapshot.getValue(post::class.java)
-
-                    postNickname = item!!.nickname
-                    postTitle = item!!.title
-                    content = item!!.content
-                    postUID = item!!.uid
-
-                    binding.nickname.text = item!!.nickname
-                    binding.Title.text = item!!.title
-                    binding.Content.text = item!!.content
-                    auth = FirebaseAuth.getInstance()
-
-                    val presentuid = auth.currentUser?.uid.toString()
-                    val datauid = item!!.uid
-
-                }catch (e: Exception){
-
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-
-            }
-        }
-        Database.Board.child(key).addValueEventListener(postListener)
+        finish()
     }
+
+    fun editPost(){
+        val intent = Intent(this, EditPostActivity::class.java)
+        intent.putExtra("key",key)
+        startActivity(intent)
+    }
+
+
 
     fun saveComment(){
         auth = FirebaseAuth.getInstance()

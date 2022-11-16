@@ -4,5 +4,6 @@ data class bestPost(
     val title: String ="",
     val content: String="",
     val nickname: String="",
-    var starCount: Int = 0
+    var starCount: Int = 0,
+    val key: String=""
     )

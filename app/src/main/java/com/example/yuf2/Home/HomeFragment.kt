@@ -141,9 +141,8 @@ class HomeFragment : Fragment() {
             }
         }
 
-        Database.Board.addValueEventListener(postListener)
+        Database.BestBoard.addValueEventListener(postListener)
 
     }
-
 
 }

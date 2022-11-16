@@ -8,8 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import com.example.yuf2.Board.WriteBoardActivity
-import com.example.yuf2.OKActivity
 import com.example.yuf2.R
 import com.example.yuf2.StartActivity
 import com.example.yuf2.databinding.FragmentSettingBinding
@@ -61,17 +59,6 @@ class SettingFragment : Fragment() {
             val intent = Intent(context, StartActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-        }
-
-        binding.OK.setOnClickListener{
-            val presentuid = auth.currentUser?.uid.toString()
-
-            val intent = Intent(context, OKActivity::class.java)
-            intent.putExtra("presentuid",presentuid)
-
-            startActivity(intent)
-
-
         }
 
         return binding.root
