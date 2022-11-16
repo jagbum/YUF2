@@ -97,6 +97,7 @@ class ReadBoardActivity : AppCompatActivity() {
 
                 // Set value and report transaction success
                 mutableData.value = p
+
                 return Transaction.success(mutableData)
             }
 
@@ -174,6 +175,8 @@ class ReadBoardActivity : AppCompatActivity() {
     fun removePost(){
         Database.Board.child(key).removeValue()
         Database.BestBoard.child(key).removeValue()
+        Database.comment.child(key).removeValue()
+        Database.nickname.child(uid).child("MyBoard").child(key).removeValue()
 
         finish()
     }
@@ -183,8 +186,6 @@ class ReadBoardActivity : AppCompatActivity() {
         intent.putExtra("key",key)
         startActivity(intent)
     }
-
-
 
     fun saveComment(){
         auth = FirebaseAuth.getInstance()

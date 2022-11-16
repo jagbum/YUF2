@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.yuf2.R
+import com.example.yuf2.databinding.ActivityMyPostBinding
 import com.example.yuf2.databinding.FragmentBoardBinding
 import com.example.yuf2.dataclass.Database
 import com.example.yuf2.dataclass.post
@@ -74,6 +75,12 @@ class BoardFragment : Fragment() {
 
         binding.write.setOnClickListener {
             WritePost()
+        }
+
+        binding.MyPost.setOnClickListener {
+            val intent = Intent(context, myPostActivity::class.java)
+            intent.putExtra("currentUID", auth.currentUser?.uid.toString())
+            startActivity(intent)
         }
 
         getBoard()

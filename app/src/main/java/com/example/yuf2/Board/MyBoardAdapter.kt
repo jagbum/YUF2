@@ -6,16 +6,15 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.yuf2.R
-import com.example.yuf2.dataclass.comment
+import com.example.yuf2.dataclass.bestPost
 
-class CommentAdapter (val comments: MutableList<comment>) : BaseAdapter() {
-
+class MyBoardAdapter (val myBoard : MutableList<bestPost>) : BaseAdapter() {
     override fun getCount(): Int {
-        return comments.size
+        return myBoard.size
     }
 
     override fun getItem(p0: Int): Any {
-        return comments[p0]
+        return myBoard[p0]
     }
 
     override fun getItemId(p0: Int): Long {
@@ -26,14 +25,11 @@ class CommentAdapter (val comments: MutableList<comment>) : BaseAdapter() {
 
         var view = p1
         if(view == null){
-            view = LayoutInflater.from(p2?.context).inflate(R.layout.comment_item, p2, false)
+            view = LayoutInflater.from(p2?.context).inflate(R.layout.mypost, p2, false)
         }
 
-        val nickname = view?.findViewById<TextView>(R.id.CommentUserNickname)
-        nickname!!.text = comments[p0].nickname
-
-        val comment = view?.findViewById<TextView>(R.id.comment)
-        comment!!.text = comments[p0].comment
+        val title = view?.findViewById<TextView>(R.id.title)
+        title!!.text = myBoard[p0].title
 
         return view!!
     }

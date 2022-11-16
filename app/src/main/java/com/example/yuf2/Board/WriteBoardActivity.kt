@@ -47,7 +47,10 @@ class WriteBoardActivity : AppCompatActivity() {
 
         if(title!=null&&content!=null){
 
-            Database.Board.push().setValue(post(title, content, nickname, uid, 0))
+            val postKey = Database.Board.push().key.toString()
+
+            Database.Board.child(postKey).setValue(post(title, content, nickname, uid, 0))//push
+            Database.nickname.child(uid).child("MyBoard").child(postKey).setValue(bestPost(title, content, nickname, 0))
             finish()
 
         }else{

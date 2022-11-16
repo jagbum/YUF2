@@ -13,7 +13,6 @@ class Database {
         val Board = Firebase.database.getReference("board")
         val BestBoard = Firebase.database.getReference("bestBoard")
         val comment = Firebase.database.getReference("comment")
-        val likePoint = Firebase.database.getReference("likePoint")
 
 
     }
