@@ -1,4 +1,4 @@
-package com.example.yuf2.Fragment
+package com.example.yuf2.Freind
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -65,8 +65,9 @@ class EditPostActivity : AppCompatActivity() {
 
         Database.Board.child(key).child("title").setValue(binding.title.text.toString())
         Database.Board.child(key).child("content").setValue(binding.content.text.toString())
+        Database.nickname.child(uid).child("MyBoard").child(key).child("title").setValue(binding.title.text.toString())
 
-       Database.BestBoard.orderByChild("key").equalTo(key)
+        Database.BestBoard.orderByChild("key").equalTo(key)
            .addListenerForSingleValueEvent(object : ValueEventListener {
                override fun onDataChange(dataSnapshot: DataSnapshot) {
                    if (!dataSnapshot.exists()) {

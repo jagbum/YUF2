@@ -58,6 +58,10 @@ class ReadBoardActivity : AppCompatActivity() {
             keyboard.hideSoftInputFromWindow(currentFocus?.windowToken,0)
         }
 
+        binding.follow.setOnClickListener {
+            saveFriend()
+        }
+
         binding.delete.setOnClickListener {
             removePost()
         }
@@ -88,14 +92,13 @@ class ReadBoardActivity : AppCompatActivity() {
                     p.stars[uid] = true
                 }
 
-                if(p.starCount>=2){
+                if(p.starCount>=5){
                     Database.BestBoard.child(key).setValue(bestPost(postTitle,content,postNickname,p.starCount,key))
                 }
                 else{
                     Database.BestBoard.child(key).removeValue()
                 }
 
-                // Set value and report transaction success
                 mutableData.value = p
 
                 return Transaction.success(mutableData)
@@ -150,15 +153,27 @@ class ReadBoardActivity : AppCompatActivity() {
                     auth = FirebaseAuth.getInstance()
 
                     val presentuid = auth.currentUser?.uid.toString()
-                    val postuid = item!!.uid
 
-                    if(postuid.equals(presentuid)){
-
+                    if(postUID.equals(presentuid)){
                         binding.delete.isVisible = true
                         binding.edit.isVisible = true
-
+                    }else{
+                        binding.follow.isVisible = true
                     }
 
+                    Database.nickname.child(uid).child("Friend").orderByChild("uid").equalTo(postUID)
+                        .addListenerForSingleValueEvent(object : ValueEventListener {
+                            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                if (!dataSnapshot.exists()) {
+                                } else {
+                                    binding.follow.isVisible = false
+                                }
+                            }
+
+                            override fun onCancelled(databaseError: DatabaseError) {
+
+                            }
+                        })
 
                 }catch (e: Exception){
 
@@ -195,6 +210,23 @@ class ReadBoardActivity : AppCompatActivity() {
 
         Database.comment.child(key).push().setValue(comment(nickname, comment, uid))
         binding.commentInput.setText("")
+    }
+
+    fun saveFriend(){
+
+        Database.nickname.child(uid).child("Friend").orderByChild("uid").equalTo(postUID)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        Database.nickname.child(uid).child("Friend").push().setValue(Friend(postNickname,postUID))
+                    } else {
+                        Toast.makeText(getApplicationContext(), "친구에 추가된 사람입니다.", Toast.LENGTH_SHORT).show()                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+
+                }
+            })
     }
 
     fun getComment(key: String){

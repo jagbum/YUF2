@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/friendFragment"
-        android:name="com.example.yuf2.Fragment.FriendFragment"
+        android:name="com.example.yuf2.Freind.FriendFragment"
         android:label="fragment_friend"
         tools:layout="@layout/fragment_friend" >
         <action
