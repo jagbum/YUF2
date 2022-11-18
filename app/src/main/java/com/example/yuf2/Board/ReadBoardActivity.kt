@@ -218,9 +218,9 @@ class ReadBoardActivity : AppCompatActivity() {
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (!dataSnapshot.exists()) {
-                        Database.nickname.child(uid).child("Friend").child(postUID).setValue(postNickname)
+                        Database.nickname.child(uid).child("Friend").child(postUID).setValue(Friend(postNickname, postUID))
                     } else {
-                        Toast.makeText(getApplicationContext(), "친구에 추가된 사람입니다.", Toast.LENGTH_SHORT).show()                    }
+                        Toast.makeText(applicationContext, "친구에 추가된 사람입니다.", Toast.LENGTH_SHORT).show()                    }
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
