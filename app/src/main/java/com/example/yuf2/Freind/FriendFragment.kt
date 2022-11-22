@@ -15,6 +15,7 @@ import com.example.yuf2.databinding.FragmentBoardBinding
 import com.example.yuf2.databinding.FragmentFriendBinding
 import com.example.yuf2.dataclass.Database
 import com.example.yuf2.dataclass.Friend
+import com.example.yuf2.dataclass.User
 import com.example.yuf2.dataclass.post
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -30,6 +31,9 @@ class FriendFragment : Fragment() {
     private val friendKeyList = mutableListOf<String>()
     private lateinit var FriendAdpater: FriendAdapter
     private lateinit var auth: FirebaseAuth
+
+    private lateinit var myName :String
+    private lateinit var myProfile :String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,9 +79,38 @@ class FriendFragment : Fragment() {
             it.findNavController().navigate(R.id.action_friendFragment_to_homeFragment)
         }
 
+        getMyProfile()
         getFriend()
 
         return binding.root
+    }
+
+    fun getMyProfile(){
+
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                try{
+                    val item = dataSnapshot.getValue(User::class.java)
+
+                    myName = item!!.nickname
+                    myProfile = item!!.state
+
+                    binding.myName.text = item!!.nickname
+                    binding.myState.text = item!!.state
+
+                }catch (e: Exception){
+
+                }
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+        }
+
+        Database.nickname.child(auth.currentUser?.uid.toString()).addValueEventListener(postListener)
     }
 
     fun getFriend(){
