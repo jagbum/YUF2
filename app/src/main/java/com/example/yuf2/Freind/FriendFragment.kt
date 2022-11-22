@@ -8,15 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import com.example.yuf2.Board.BoardAdapter
-import com.example.yuf2.Board.ReadBoardActivity
 import com.example.yuf2.R
-import com.example.yuf2.databinding.FragmentBoardBinding
 import com.example.yuf2.databinding.FragmentFriendBinding
 import com.example.yuf2.dataclass.Database
 import com.example.yuf2.dataclass.Friend
 import com.example.yuf2.dataclass.User
-import com.example.yuf2.dataclass.post
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -55,7 +51,6 @@ class FriendFragment : Fragment() {
         binding.myfriend.setOnItemClickListener{ adapterView, view, i, l ->
             val intent = Intent(context, ProfileActivity::class.java)
             intent.putExtra("key", friendKeyList[i])
-            intent.putExtra("currentUID", auth.currentUser?.uid.toString())
             startActivity(intent)
         }
 
