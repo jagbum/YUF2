@@ -52,12 +52,12 @@ class FriendFragment : Fragment() {
 
         binding.myfriend.adapter = FriendAdpater
 
-//        binding.myfriend.setOnItemClickListener{ adapterView, view, i, l ->
-//            val intent = Intent(context, ReadBoardActivity::class.java)
-//            intent.putExtra("key", friendKeyList[i])
-//            intent.putExtra("currentUID", auth.currentUser?.uid.toString())
-//            startActivity(intent)
-//        }
+        binding.myfriend.setOnItemClickListener{ adapterView, view, i, l ->
+            val intent = Intent(context, ProfileActivity::class.java)
+            intent.putExtra("key", friendKeyList[i])
+            intent.putExtra("currentUID", auth.currentUser?.uid.toString())
+            startActivity(intent)
+        }
 
         binding.setting.setOnClickListener {
             it.findNavController().navigate(R.id.action_friendFragment_to_settingFragment)
