@@ -94,7 +94,7 @@
     </fragment>
     <fragment
         android:id="@+id/notiFragment"
-        android:name="com.example.yuf2.Fragment.NotiFragment"
+        android:name="com.example.yuf2.Noti.NotiFragment"
         android:label="fragment_noti"
         tools:layout="@layout/fragment_noti" >
         <action
