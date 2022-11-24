@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/rogo"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="68dp" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

@@ -7,20 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".SearchPWActivity">
 
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/rogo"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="112dp" />
+
     <LinearLayout
+        android:background="@color/custom_blue2"
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_width="411dp"
+        android:layout_height="87dp"
         android:gravity="center"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-3dp">
+        tools:layout_editor_absoluteY="-3dp"
+
+        >
 
         <TextView
+            android:background="@color/custom_blue2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="아이디 찾기"
-            android:textSize="50dp" />
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            />
 
     </LinearLayout>
 
@@ -60,7 +74,9 @@
         android:text="비밀번호 찾기"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentID" />
+        app:layout_constraintTop_toBottomOf="@+id/studentID"
+        android:backgroundTint="@color/custom_blue"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,22 +5,34 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchIDActivity">
+    tools:context=".SearchIDActivity"
+    >
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/rogo"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="104dp" />
 
     <LinearLayout
+        android:background="@color/custom_blue2"
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_width="412dp"
+        android:layout_height="85dp"
         android:gravity="center"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteX="-1dp"
         tools:layout_editor_absoluteY="-3dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="아이디 찾기"
-            android:textSize="50dp" />
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:background="@color/custom_blue2"
+            />
 
     </LinearLayout>
 
@@ -51,7 +63,9 @@
         android:text="아이디 찾기"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentID" />
+        app:layout_constraintTop_toBottomOf="@+id/studentID"
+        android:backgroundTint="@color/custom_blue"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
