@@ -69,6 +69,7 @@
                 android:id="@+id/LoginBtn"
                 android:layout_width="106dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/custom_blue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +95,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="5dp"
-            android:text="회원가임"/>
+            android:text="회원가입"
+            android:backgroundTint="@color/custom_blue"
+            />
 
         <Button
             android:id="@+id/SearchIDBtn"
@@ -102,7 +105,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="5dp"
-            android:text="아이디 찾기"/>
+            android:text="아이디 찾기"
+            android:backgroundTint="@color/custom_blue"
+            />
 
         <Button
             android:id="@+id/SearchPWBtn"
@@ -110,7 +115,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="5dp"
-            android:text="비밀번호 찾기"/>
+            android:text="비밀번호 찾기"
+            android:backgroundTint="@color/custom_blue"
+            />
 
 
 

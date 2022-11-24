@@ -30,7 +30,6 @@ class BoardAdapter(val board : MutableList<post>) : BaseAdapter() {
 
         val title = view?.findViewById<TextView>(R.id.title)
         title!!.text = board[p0].title
-
         val content = view?.findViewById<TextView>(R.id.content)
         content!!.text = board[p0].content
 

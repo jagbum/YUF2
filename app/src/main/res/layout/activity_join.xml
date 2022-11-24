@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".JoinActivity">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:background="@color/custom_blue2"
+            >
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -20,20 +25,25 @@
                     android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
+                    android:background="@color/custom_blue2"
                     android:gravity="center"
                     tools:ignore="MissingConstraints"
                     tools:layout_editor_absoluteX="0dp"
                     tools:layout_editor_absoluteY="-3dp">
 
                     <TextView
+                        android:background="@color/custom_blue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="회원가입"
+                        android:textColor="@color/white"
                         android:textSize="50dp" />
 
                 </LinearLayout>
 
                 <LinearLayout
+
+                    android:background="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -87,15 +97,17 @@
                         android:inputType="textPassword" />
 
 
-
                     <Button
+
                         android:id="@+id/join"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_marginLeft="50dp"
                         android:layout_marginRight="50dp"
                         android:text="회원 가입"
-                        android:textSize="30dp" />
+                        android:textSize="30dp"
+                        android:backgroundTint="@color/custom_blue"
+                        />
                 </LinearLayout>
 
             </LinearLayout>
