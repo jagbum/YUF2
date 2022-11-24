@@ -1,4 +1,4 @@
-package com.example.yuf2.Fragment
+package com.example.yuf2.Chat
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -27,6 +27,8 @@ class ChatFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_chat, container, false)
 
+        ChatTool.chatFragmentContext = getContext()
+        ChatTool
         binding.setting.setOnClickListener {
             it.findNavController().navigate(R.id.action_chatFragment_to_settingFragment)
         }

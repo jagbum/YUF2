@@ -5,13 +5,16 @@
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.ChatFragment">
+    tools:context=".Chat.ChatFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rv_chat"></androidx.recyclerview.widget.RecyclerView>
 
         <LinearLayout
             android:background="@color/custom_blue2"
