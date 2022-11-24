@@ -209,6 +209,8 @@ class ReadBoardActivity : AppCompatActivity() {
         val uid = auth.currentUser?.uid.toString()
 
         Database.comment.child(key).push().setValue(comment(nickname, comment, uid))
+        Database.nickname.child(postUID).child("notification").child("commentnoti").push().setValue(CommentNoti(postTitle,key))
+
         binding.commentInput.setText("")
     }
 
@@ -219,6 +221,7 @@ class ReadBoardActivity : AppCompatActivity() {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (!dataSnapshot.exists()) {
                         Database.nickname.child(uid).child("Friend").child(postUID).setValue(Friend(postNickname, postUID))
+                        Database.nickname.child(postUID).child("notification").child("friendnoti").child(uid).setValue(FriendNoti(currentNickname,uid))
                     } else {
                         Toast.makeText(applicationContext, "친구에 추가된 사람입니다.", Toast.LENGTH_SHORT).show()                    }
                 }

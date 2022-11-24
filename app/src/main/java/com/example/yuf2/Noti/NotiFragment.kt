@@ -14,9 +14,11 @@ import com.example.yuf2.databinding.FragmentHomeBinding
 import com.example.yuf2.databinding.FragmentNotiBinding
 import com.example.yuf2.dataclass.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 
 
 class NotiFragment : Fragment() {
@@ -40,6 +42,8 @@ class NotiFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        auth = Firebase.auth
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_noti, container, false)
 
 
@@ -72,6 +76,10 @@ class NotiFragment : Fragment() {
             it.findNavController().navigate(R.id.action_notiFragment_to_homeFragment)
         }
 
+
+        getCommentNotification()
+        getFriendNotification()
+
         return binding.root
     }
 
@@ -99,6 +107,7 @@ class NotiFragment : Fragment() {
 
             }
         }
+
 
         Database.nickname.child(auth.currentUser?.uid.toString()).child("notification").child("friendnoti").addValueEventListener(postListener)
 
