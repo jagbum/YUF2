@@ -30,11 +30,11 @@
             <TextView
                 android:id="@+id/content"
                 android:text="content"
-                android:textSize="30dp"
+                android:textSize="20dp"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/black"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="30dp"
                 android:layout_weight="5"/>
 
             <TextView
