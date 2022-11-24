@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.yuf2.R
-import com.example.yuf2.databinding.FragmentBoardBinding
 import com.example.yuf2.databinding.FragmentNotiBinding
 
 
