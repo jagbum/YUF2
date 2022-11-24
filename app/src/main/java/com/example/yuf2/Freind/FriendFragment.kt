@@ -51,6 +51,7 @@ class FriendFragment : Fragment() {
         binding.myfriend.setOnItemClickListener{ adapterView, view, i, l ->
             val intent = Intent(context, ProfileActivity::class.java)
             intent.putExtra("key", friendKeyList[i])
+            intent.putExtra("currentUID", auth.currentUser?.uid.toString())
             startActivity(intent)
         }
 
