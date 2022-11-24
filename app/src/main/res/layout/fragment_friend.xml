@@ -39,7 +39,7 @@
                     android:textSize="20dp"/>
 
                 <LinearLayout
-                    android:background="@color/white"
+                    android:background="@color/custom_yellow"
                     android:id="@+id/myProfile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

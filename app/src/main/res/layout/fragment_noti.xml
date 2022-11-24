@@ -68,6 +68,7 @@
                     android:textSize="15dp" />
 
                 <ListView
+                    android:background="@color/custom_yellow"
                     android:id="@+id/friendNoti"
                     android:layout_width="match_parent"
                     android:layout_height="250dp" />
@@ -83,6 +84,7 @@
                 android:orientation="vertical">
 
                 <TextView
+
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
@@ -93,7 +95,8 @@
                 <ListView
                     android:id="@+id/commentNoti"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp" />
+                    android:layout_height="279dp"
+                    android:background="@color/custom_yellow" />
 
             </LinearLayout>
 

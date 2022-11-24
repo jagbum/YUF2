@@ -65,9 +65,10 @@
 
                 <TextView
                     android:id="@+id/nickname"
-                    android:layout_width="match_parent"
+                    android:layout_width="385dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+
                     android:text="nickname"
                     android:textColor="@color/black"
                     android:textSize="25dp" />
@@ -75,7 +76,7 @@
 
                 <TextView
                     android:id="@+id/Title"
-                    android:layout_width="match_parent"
+                    android:layout_width="385dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="title"
@@ -86,7 +87,7 @@
 
                 <TextView
                     android:id="@+id/Content"
-                    android:layout_width="match_parent"
+                    android:layout_width="384dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="content"
@@ -137,6 +138,7 @@
         android:background="#000000"/>
 
         <ListView
+            android:background="@color/custom_yellow"
             android:id="@+id/comment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
