@@ -171,8 +171,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="6"
                 android:backgroundTint="@color/custom_blue"
-                android:text="저장"
-                android:textSize="10dp" />
+                 />
 
 
         </LinearLayout>

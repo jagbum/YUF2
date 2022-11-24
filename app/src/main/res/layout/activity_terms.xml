@@ -17,6 +17,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:background="@color/custom_blue2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -77,6 +78,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
             <CheckBox
+
                 android:id="@+id/term2check"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,6 +91,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 
 
             <Button
+                android:backgroundTint="@color/custom_blue"
                 android:id="@+id/temBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
