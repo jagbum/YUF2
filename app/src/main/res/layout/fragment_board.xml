@@ -6,7 +6,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Fragment.BoardFragment">
+        tools:context=".Noti.BoardFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
