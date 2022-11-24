@@ -1,4 +1,4 @@
-package com.example.yuf2.Fragment
+package com.example.yuf2.Setting
 
 import android.content.Intent
 import android.os.Bundle

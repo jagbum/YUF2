@@ -8,14 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import com.example.yuf2.Board.BoardAdapter
-import com.example.yuf2.Board.ReadBoardActivity
 import com.example.yuf2.R
-import com.example.yuf2.databinding.FragmentBoardBinding
 import com.example.yuf2.databinding.FragmentFriendBinding
 import com.example.yuf2.dataclass.Database
 import com.example.yuf2.dataclass.Friend
-import com.example.yuf2.dataclass.post
+import com.example.yuf2.dataclass.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -30,6 +27,9 @@ class FriendFragment : Fragment() {
     private val friendKeyList = mutableListOf<String>()
     private lateinit var FriendAdpater: FriendAdapter
     private lateinit var auth: FirebaseAuth
+
+    private lateinit var myName :String
+    private lateinit var myProfile :String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,12 +48,11 @@ class FriendFragment : Fragment() {
 
         binding.myfriend.adapter = FriendAdpater
 
-//        binding.myfriend.setOnItemClickListener{ adapterView, view, i, l ->
-//            val intent = Intent(context, ReadBoardActivity::class.java)
-//            intent.putExtra("key", friendKeyList[i])
-//            intent.putExtra("currentUID", auth.currentUser?.uid.toString())
-//            startActivity(intent)
-//        }
+        binding.myfriend.setOnItemClickListener{ adapterView, view, i, l ->
+            val intent = Intent(context, ProfileActivity::class.java)
+            intent.putExtra("key", friendKeyList[i])
+            startActivity(intent)
+        }
 
         binding.setting.setOnClickListener {
             it.findNavController().navigate(R.id.action_friendFragment_to_settingFragment)
@@ -75,9 +74,38 @@ class FriendFragment : Fragment() {
             it.findNavController().navigate(R.id.action_friendFragment_to_homeFragment)
         }
 
+        getMyProfile()
         getFriend()
 
         return binding.root
+    }
+
+    fun getMyProfile(){
+
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                try{
+                    val item = dataSnapshot.getValue(User::class.java)
+
+                    myName = item!!.nickname
+                    myProfile = item!!.state
+
+                    binding.myName.text = item!!.nickname
+                    binding.myState.text = item!!.state
+
+                }catch (e: Exception){
+
+                }
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+        }
+
+        Database.nickname.child(auth.currentUser?.uid.toString()).addValueEventListener(postListener)
     }
 
     fun getFriend(){

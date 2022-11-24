@@ -115,7 +115,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.example.yuf2.Fragment.SettingFragment"
+        android:name="com.example.yuf2.Setting.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" >
         <action
