@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-storage-ktx'
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation 'com.google.firebase:firebase-database-ktx'
     implementation platform('com.google.firebase:firebase-bom:30.4.1')

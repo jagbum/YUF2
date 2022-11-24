@@ -18,35 +18,35 @@
         android:theme="@style/Theme.YUF2"
         tools:targetApi="31">
         <activity
-            android:name=".UserInfoActivity"
+            android:name=".Setting.UserInfoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".NotiActivity"
+            android:name=".Setting.NotiActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".DisplayActivity"
+            android:name=".Setting.DisplayActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".LockActivity"
+            android:name=".Setting.LockActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AlarmActivity"
+            android:name=".Setting.AlarmActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
