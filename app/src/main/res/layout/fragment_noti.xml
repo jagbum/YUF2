@@ -52,11 +52,20 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:text="친구 알림"
                     android:textSize="25dp" />
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:hint="친구로 추가하시려면 알림을 눌러주세요."
+                    android:textSize="15dp" />
 
                 <ListView
                     android:id="@+id/friendNoti"
@@ -74,6 +83,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:gravity="left"
