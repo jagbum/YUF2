@@ -9,6 +9,7 @@ import com.example.yuf2.R
 import com.example.yuf2.databinding.ActivityProfileBinding
 import com.example.yuf2.databinding.ActivityReadBoardBinding
 import com.example.yuf2.dataclass.Database
+import com.example.yuf2.dataclass.Friend
 import com.example.yuf2.dataclass.User
 import com.example.yuf2.dataclass.post
 import com.google.firebase.auth.FirebaseAuth
@@ -18,10 +19,13 @@ import com.google.firebase.database.ValueEventListener
 
 class ProfileActivity : AppCompatActivity() {
 
+    private lateinit var auth: FirebaseAuth
+
     private lateinit var binding : ActivityProfileBinding
     private lateinit var key :String
     private lateinit var nickname :String
     private lateinit var state :String
+    private lateinit var uid :String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +34,11 @@ class ProfileActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile)
 
         key = intent.getStringExtra("key").toString()
+        uid = intent.getStringExtra("currentUID").toString()
+
+        binding.deleteFriend.setOnClickListener {
+            removeFriend()
+        }
 
         getData()
 
@@ -62,5 +71,13 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
+    fun removeFriend(){
+
+
+        Database.nickname.child(uid).child("Friend").child(key).removeValue()
+
+
+        finish()
+    }
 
 }
