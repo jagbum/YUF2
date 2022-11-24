@@ -222,6 +222,8 @@ class ReadBoardActivity : AppCompatActivity() {
                     if (!dataSnapshot.exists()) {
                         Database.nickname.child(uid).child("Friend").child(postUID).setValue(Friend(postNickname, postUID))
                         Database.nickname.child(postUID).child("notification").child("friendnoti").child(uid).setValue(FriendNoti(currentNickname,uid))
+                        Toast.makeText(applicationContext, "친구에 추가하였습니다.", Toast.LENGTH_SHORT).show()
+
                     } else {
                         Toast.makeText(applicationContext, "친구에 추가된 사람입니다.", Toast.LENGTH_SHORT).show()                    }
                 }

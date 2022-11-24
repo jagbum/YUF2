@@ -1,12 +1,16 @@
 package com.example.yuf2.Noti
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.example.yuf2.Board.ReadBoardActivity
 import com.example.yuf2.Home.recentBestBoardAdapter
 import com.example.yuf2.Home.recentBoardAdapter
 import com.example.yuf2.R
@@ -33,6 +37,8 @@ class NotiFragment : Fragment() {
     private val commentNotiKeyList = mutableListOf<String>()
     private lateinit var friendNotiAdpater: FriendNotiAdapter
     private lateinit var commentNotiAdpater: CommentNotiAdapter
+    private lateinit var friendName: String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +59,9 @@ class NotiFragment : Fragment() {
         binding.friendNoti.adapter = friendNotiAdpater
         binding.commentNoti.adapter = commentNotiAdpater
 
-
-
+        binding.friendNoti.setOnItemClickListener{ adapterView, view, i, l ->
+            saveFriend(friendNotiKeyList[i])
+        }
 
         binding.setting.setOnClickListener {
             it.findNavController().navigate(R.id.action_notiFragment_to_settingFragment)
@@ -143,6 +150,45 @@ class NotiFragment : Fragment() {
 
     }
 
+    fun saveFriend(uid:String){
+
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                try {
+                    val item = dataSnapshot.getValue(FriendNoti::class.java)
+
+                    friendName = item!!.name
+
+
+                }catch (e: Exception){
+
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+        }
+        Database.nickname.child(auth.currentUser?.uid.toString()).child("notification").child("friendnoti").child(uid).addValueEventListener(postListener)
+
+        Database.nickname.child(auth.currentUser?.uid.toString()).child("Friend").orderByChild("uid").equalTo(uid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        Database.nickname.child(auth.currentUser?.uid.toString()).child("Friend").child(uid).setValue(Friend(friendName, uid))
+                        Toast.makeText(context, "친구에 추가하였습니다.", Toast.LENGTH_SHORT).show()
+
+                    } else {
+                        Toast.makeText(context, "친구에 추가된 사람입니다.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+
+                }
+            })
+    }
 
 
 }
