@@ -33,7 +33,7 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="수정"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,7 +43,7 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="삭제"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="@+id/edit"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -121,7 +121,7 @@
 
         <Button
 
-            android:visibility="visible"
+            android:visibility="invisible"
             android:id="@+id/follow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
