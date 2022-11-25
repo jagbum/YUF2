@@ -51,7 +51,6 @@
 
 
             <TextView
-                android:background="@color/custom_blue"
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="65dp"
@@ -64,7 +63,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:background="@color/custom_yellow"
                 android:id="@+id/state"
                 android:layout_width="wrap_content"
                 android:layout_height="86dp"
