@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class SettingFragment : Fragment() {
+class  SettingFragment : Fragment() {
 
     private lateinit var binding : FragmentSettingBinding
     private lateinit var auth: FirebaseAuth
@@ -58,6 +58,13 @@ class SettingFragment : Fragment() {
 
             val intent = Intent(context, StartActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+
+        binding.myInfo.setOnClickListener {
+
+            val intent = Intent(context, UserInfoActivity::class.java)
+            intent.putExtra("currentUID", auth.currentUser?.uid.toString())
             startActivity(intent)
         }
 

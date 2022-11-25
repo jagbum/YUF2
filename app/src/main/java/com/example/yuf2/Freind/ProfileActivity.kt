@@ -80,4 +80,8 @@ class ProfileActivity : AppCompatActivity() {
         finish()
     }
 
+    fun startChat(){
+
+    }
+
 }
