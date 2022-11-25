@@ -14,7 +14,9 @@ import com.example.yuf2.R
 import com.example.yuf2.databinding.ActivityReadBoardBinding
 import com.example.yuf2.dataclass.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 
 class ReadBoardActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -38,6 +40,7 @@ class ReadBoardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_read_board)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_read_board)
+        auth = Firebase.auth
 
         uid = intent.getStringExtra("currentUID").toString()
 
@@ -209,7 +212,12 @@ class ReadBoardActivity : AppCompatActivity() {
         val uid = auth.currentUser?.uid.toString()
 
         Database.comment.child(key).push().setValue(comment(nickname, comment, uid))
-        Database.nickname.child(postUID).child("notification").child("commentnoti").push().setValue(CommentNoti(postTitle,key))
+
+        if(auth.currentUser?.uid.toString().equals(postUID)){}
+        else {
+            Database.nickname.child(postUID).child("notification").child("commentnoti").push()
+                .setValue(CommentNoti(postTitle, key))
+        }
 
         binding.commentInput.setText("")
     }
@@ -222,6 +230,8 @@ class ReadBoardActivity : AppCompatActivity() {
                     if (!dataSnapshot.exists()) {
                         Database.nickname.child(uid).child("Friend").child(postUID).setValue(Friend(postNickname, postUID))
                         Database.nickname.child(postUID).child("notification").child("friendnoti").child(uid).setValue(FriendNoti(currentNickname,uid))
+                        Toast.makeText(applicationContext, "친구에 추가하였습니다.", Toast.LENGTH_SHORT).show()
+
                     } else {
                         Toast.makeText(applicationContext, "친구에 추가된 사람입니다.", Toast.LENGTH_SHORT).show()                    }
                 }

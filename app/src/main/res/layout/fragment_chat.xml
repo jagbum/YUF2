@@ -7,14 +7,38 @@
     android:layout_height="match_parent"
     tools:context=".Chat.ChatFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <LinearLayout
+            android:background="@color/custom_blue2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:backgroundTint="@color/custom_blue"
+                android:id="@+id/write"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/SearchPost"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/rv_chat"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/rv_chat"
+
+                ></androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
 
 
         <LinearLayout
@@ -95,8 +119,6 @@
                 android:textSize="20dp" />
 
         </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </LinearLayout>
 </FrameLayout>
 </layout>
