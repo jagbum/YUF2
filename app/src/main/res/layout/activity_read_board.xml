@@ -28,20 +28,22 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:backgroundTint="@color/custom_blue"
             android:id="@+id/edit"
-            android:layout_width="50dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="수정"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:backgroundTint="@color/custom_blue"
             android:id="@+id/delete"
-            android:layout_width="50dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="삭제"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintEnd_toStartOf="@+id/edit"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -116,16 +118,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <Button
-            android:backgroundTint="@color/custom_blue"
-            android:visibility="invisible"
+
+            android:visibility="visible"
             android:id="@+id/follow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="친구 추가"
+            android:text="친구추가"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
+            android:backgroundTint="@color/custom_blue"
             />
 
 
@@ -166,7 +169,9 @@
                     android:background="@android:color/transparent" />
             </LinearLayout>
 
-            <Button
+            <ImageView
+                android:src="@drawable/send"
+                android:text="▲"
                 android:id="@+id/commentSave"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
