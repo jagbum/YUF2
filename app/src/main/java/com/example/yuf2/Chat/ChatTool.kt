@@ -42,18 +42,18 @@ class ChatTool {
                     val is_front = snapshot.child(front).hasChildren()
                     val is_end = snapshot.child(end).hasChildren()
                     if (is_front && is_end) {
-                        val front_name: String?
-                        val end_name: String?
-                        front_name = snapshot.child(front).child("name").getValue(String::class.java)
-                        end_name = snapshot.child(end).child("name").getValue(String::class.java)
-                        Database.chat.child(chatid).child("front").setValue(front)
-                        Database.chat.child(chatid).child("end").setValue(end)
+                        val front_nickname: String?
+                        val end_nickname: String?
+                        front_nickname = snapshot.child(front).child("nickname").getValue(String::class.java)
+                        end_nickname = snapshot.child(end).child("nickname").getValue(String::class.java)
+                        Database.chat.child(chatid).child("frontid").setValue(front)
+                        Database.chat.child(chatid).child("frontnickname").setValue(front_nickname)
+                        Database.chat.child(chatid).child("endid").setValue(end)
+                        Database.chat.child(chatid).child("endnickname").setValue(end_nickname)
                         Database.chat.child(chatid).child("update").setValue(getCurrenttime())
 
-                        if (auth.currentUser?.uid.toString().equals(front)) end_name else front_name
-
-                        Database.nickname.child(front).child("chat").child(chatid).setValue(if (auth.currentUser?.uid.toString().equals(front)) end_name else front_name);
-                        Database.nickname.child(end).child("chat").child(chatid).setValue(if (auth.currentUser?.uid.toString().equals(end)) front_name else end_name);
+                        Database.nickname.child(front).child("chat").child(chatid).setValue(getCurrenttime());
+                        Database.nickname.child(end).child("chat").child(chatid).setValue(getCurrenttime());
 
                         Toast.makeText(chatFragmentContext, "채팅방 생성 성공 !!", Toast.LENGTH_SHORT).show()
                     } else Toast.makeText(chatFragmentContext, "채팅방 생성 실패 !!", Toast.LENGTH_SHORT).show()
@@ -67,5 +67,15 @@ class ChatTool {
             val date = Date(now)
             return SimpleDateFormat("yyyyMMddhhmmss").format(date)
         }
+        fun getChangetime(update: String): String? {
+            val now = System.currentTimeMillis()
+            val date = Date(now)
+            val current = SimpleDateFormat("yyyyMMddhhmmss").format(date)
+            val ld = update.toLong()
+            val cd = current.toLong()
+            val diff = cd - ld
+            return if (diff < 1000000) "오늘" else if (diff < 2000000) "어제" else update.substring(0, 4) + " - " + update.substring(5, 7) + " - " + update.substring(7, 9)
+        }
+
     }
 }

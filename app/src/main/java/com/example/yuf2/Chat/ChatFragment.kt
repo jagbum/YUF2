@@ -2,7 +2,6 @@ package com.example.yuf2.Chat
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.EditText
 import androidx.databinding.DataBindingUtil
@@ -10,8 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuf2.Freind.FriendAdapter
-import com.example.yuf2.MainActivity
 import com.example.yuf2.R
 import com.example.yuf2.databinding.FragmentChatBinding
 import com.example.yuf2.dataclass.Database
@@ -55,12 +52,21 @@ class ChatFragment : Fragment() {
                             val j = snapshot.child(i!!)
                             val temp_update = j.child("update").getValue(String::class.java)
                             val temp_last = j.child("last").getValue(String::class.java)
-                            val temp_front = j.child("front").getValue(String::class.java)
-                            val temp_end = j.child("end").getValue(String::class.java)
-                            ChatTool.chat_list.add(Chat(i!!, temp_update ?: "", temp_last ?: "", temp_front!!, temp_end!!))
+                            val temp_frontid = j.child("frontid").getValue(String::class.java)
+                            val temp_frontname = j.child("frontnickname").getValue(String::class.java)
+                            val temp_endid = j.child("endid").getValue(String::class.java)
+                            val temp_endname = j.child("endnickname").getValue(String::class.java)
+                            ChatTool.chat_list.add(
+                                Chat(
+                                    i, temp_update ?: "", temp_last ?: "",
+                                    temp_frontid!!,
+                                    temp_frontname!!,
+                                    temp_endid!!,
+                                    temp_endname!!
+                                )
+                            )
                         }
                         adapter.notifyDataSetChanged()
-                        Log.i("asdf", ChatTool.chat_list.size.toString())
                     }
 
                     override fun onCancelled(error: DatabaseError) {}

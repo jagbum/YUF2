@@ -1,16 +1,19 @@
 package com.example.yuf2.Chat
 
-import androidx.recyclerview.widget.RecyclerView
-import com.example.yuf2.Chat.ChatAdapter.ChatHolder
-import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
-import com.example.yuf2.R
-
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.yuf2.Chat.ChatAdapter.ChatHolder
+import com.example.yuf2.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class ChatAdapter : RecyclerView.Adapter<ChatHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatHolder {
         val inflater = LayoutInflater.from(parent.context)
         val itemView = inflater.inflate(R.layout.item_chat, parent, false)
@@ -27,6 +30,7 @@ class ChatAdapter : RecyclerView.Adapter<ChatHolder>() {
     }
 
     class ChatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private var auth : FirebaseAuth = Firebase.auth
         var iv_chat_image: ImageView
         var iv_chat_new: ImageView
         var tv_chat_name: TextView
@@ -42,9 +46,9 @@ class ChatAdapter : RecyclerView.Adapter<ChatHolder>() {
         }
 
         fun setItem(item: Chat) {
-            tv_chat_name.text = item.front
+            tv_chat_name.text = if (auth.currentUser?.uid.toString().equals(item.frontid)) item.endnickname else item.frontnickname
             tv_chat_last.text = item.last
-            tv_chat_update.text = item.update
+            tv_chat_update.setText(ChatTool.getChangetime(item.update))
         }
     }
 }
