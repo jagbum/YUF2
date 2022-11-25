@@ -36,7 +36,7 @@ class UserInfoActivity : AppCompatActivity() {
 
 
         binding.save.setOnClickListener {
-            edit(key)
+            edit()
         }
 
         getData()
@@ -69,28 +69,11 @@ class UserInfoActivity : AppCompatActivity() {
         Database.nickname.child(uid).addValueEventListener(postListener)
     }
 
-    fun edit(key: String) {
+    fun edit() {
 
-//        Database.nickname.child(key).child("state").setValue(binding.content.text.toString())
-////        Database.nickname.child(uid).child("MyBoard").child(key).child("title").setValue(binding.title.text.toString())
-//
-//        Database.BestBoard.orderByChild("key").equalTo(key)
-//            .addListenerForSingleValueEvent(object : ValueEventListener {
-//                override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                    if (!dataSnapshot.exists()) {
-//
-//                    } else {
-//                        Database.BestBoard.child(key).child("content").setValue(binding.content.text.toString())
-//                    }
-//                }
-//
-//                override fun onCancelled(databaseError: DatabaseError) {
-//
-//                }
-//            })
-//
-//
-//        finish()
+        Database.nickname.child(uid).child("state").setValue(binding.state.text.toString())
+
+        finish()
 
     }
 
