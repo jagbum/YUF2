@@ -13,18 +13,13 @@
         android:layout_height="100dp"
         android:src="@drawable/rogo"
         tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="68dp" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="YUF2"
-        android:textSize="50dp"
+        tools:layout_editor_absoluteY="68dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
 
     <LinearLayout
         android:id="@+id/linearLayout"

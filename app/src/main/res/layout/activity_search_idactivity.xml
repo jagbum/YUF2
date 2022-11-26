@@ -12,10 +12,8 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/rogo"
-        app:layout_constraintBottom_toTopOf="@+id/studentID"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="104dp" />
 
     <LinearLayout
         android:background="@color/custom_blue2"

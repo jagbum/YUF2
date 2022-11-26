@@ -96,7 +96,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="10dp"
-                    android:background="@android:color/transparent"
+                    android:background="@color/custom_yellow"
                     android:gravity="top"
                     android:hint="내용을 입력하세요."
                     android:inputType="textMultiLine" />
