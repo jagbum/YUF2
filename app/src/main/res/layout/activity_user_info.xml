@@ -60,18 +60,38 @@
                     app:civ_border_width="20dp"
                     app:civ_border_color="@color/white"
                     android:id="@+id/imageArea"
-                    android:src="@drawable/plusbtn"
                     android:layout_width="250dp"
                     android:layout_height="250dp"
                     android:layout_marginTop="60dp"
                     android:layout_gravity="center"/>
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginRight="10dp"
+                    android:text="상태메시지"
+                    android:textSize="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/purple_700"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_height="1dp"/>
 
                 <EditText
                     android:id="@+id/state"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginRight="10dp"
                     android:background="@android:color/transparent"
                     android:gravity="top"
