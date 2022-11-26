@@ -41,76 +41,89 @@
             android:layout_marginBottom="68dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+
             android:background="@color/custom_yellow"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" >
 
 
-        <Button
+
+        <TextView
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/custom_blue"
             android:id="@+id/logout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="로그아웃"
+            android:textSize="30dp"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <TextView
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/custom_blue"
             android:id="@+id/display"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="96dp"
+
             android:text="디스플레이"
+            android:textSize="30dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <Button
+        <TextView
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/custom_blue"
             android:id="@+id/myInfo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="184dp"
-            android:layout_marginTop="96dp"
+
             android:text="개인정보"
+            android:textSize="30dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <TextView
+
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/custom_blue"
             android:id="@+id/lock"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="224dp"
+
             android:text="잠금 설정"
+            android:textSize="30dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <TextView
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/custom_blue"
             android:id="@+id/alarm"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="184dp"
-            android:layout_marginTop="220dp"
+
             android:text="알람"
+            android:textSize="30dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <TextView
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/custom_blue"
             android:id="@+id/noti"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="340dp"
+
             android:text="공지사항"
+            android:textSize="30dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
 
 
 
