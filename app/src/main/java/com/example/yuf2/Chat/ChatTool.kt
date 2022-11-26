@@ -19,8 +19,6 @@ class ChatTool {
         private var auth : FirebaseAuth = Firebase.auth
         var check_make_chat = false
         var chatFragmentContext: Context? = null
-        public var chatid_list = ArrayList<String>()
-        public var chat_list = ArrayList<Chat>()
         fun createChat(str1: String, str2: String) {
             val flag = str1.compareTo(str2)
             check_make_chat = false
@@ -61,6 +59,21 @@ class ChatTool {
 
                 override fun onCancelled(error: DatabaseError) {}
             })
+        }
+        fun getChatid(str1: String, str2: String): String? {
+            val flag = str1.compareTo(str2)
+            val front: String
+            val end: String
+            if (flag == 0) {
+                return null
+            } else if (flag < 0) {
+                front = str1
+                end = str2
+            } else {
+                front = str2
+                end = str1
+            }
+            return front + end
         }
         fun getCurrenttime(): String? {
             val now = System.currentTimeMillis()

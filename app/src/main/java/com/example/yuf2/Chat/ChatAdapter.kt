@@ -1,5 +1,6 @@
 package com.example.yuf2.Chat
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,26 +12,48 @@ import com.example.yuf2.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.util.ArrayList
 
-class ChatAdapter : RecyclerView.Adapter<ChatHolder>() {
-
+class ChatAdapter(val list: java.util.ArrayList<Chat>?) : RecyclerView.Adapter<ChatHolder>() {
+    private var auth: FirebaseAuth = Firebase.auth
+    var chat_list: ArrayList<Chat>? = list
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatHolder {
+
         val inflater = LayoutInflater.from(parent.context)
         val itemView = inflater.inflate(R.layout.item_chat, parent, false)
         return ChatHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ChatHolder, position: Int) {
-        val temp = ChatTool.chat_list[position]
+        val temp = chat_list!![position]
         holder.setItem(temp)
+        holder.itemView.setOnClickListener { v ->
+            val intent = Intent(v.context.applicationContext, MessageActivity::class.java)
+            intent.putExtra(
+                "otherid",
+                if (auth.currentUser?.uid.toString().equals(temp.frontid)) temp.endid else temp.frontid
+            )
+
+            intent.putExtra(
+                "othernickname",
+                if (auth.currentUser?.uid.toString().equals(temp.frontid)) temp.endnickname else temp.frontnickname
+            )
+
+            intent.putExtra(
+                "mynickname",
+                if (auth.currentUser?.uid.toString().equals(temp.frontid)) temp.frontnickname else temp.endnickname
+            )
+
+            v.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
-        return ChatTool.chat_list.size
+        return chat_list!!.size
     }
 
     class ChatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private var auth : FirebaseAuth = Firebase.auth
+        private var auth: FirebaseAuth = Firebase.auth
         var iv_chat_image: ImageView
         var iv_chat_new: ImageView
         var tv_chat_name: TextView
@@ -46,6 +69,7 @@ class ChatAdapter : RecyclerView.Adapter<ChatHolder>() {
         }
 
         fun setItem(item: Chat) {
+
             tv_chat_name.text = if (auth.currentUser?.uid.toString().equals(item.frontid)) item.endnickname else item.frontnickname
             tv_chat_last.text = item.last
             tv_chat_update.setText(ChatTool.getChangetime(item.update))

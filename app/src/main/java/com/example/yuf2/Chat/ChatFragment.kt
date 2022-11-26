@@ -2,7 +2,9 @@ package com.example.yuf2.Chat
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -18,7 +20,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
-import java.util.*
 
 
 class ChatFragment : Fragment() {
@@ -28,6 +29,8 @@ class ChatFragment : Fragment() {
     private lateinit var adapter: ChatAdapter
     private lateinit var auth: FirebaseAuth
     private lateinit var binding : FragmentChatBinding
+    var chatid_list: ArrayList<String>? = null
+    var chat_list: ArrayList<Chat>? = null
 
     override fun onCreateView(
 
@@ -38,17 +41,22 @@ class ChatFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_chat, container, false)
         rv_chat = v.findViewById<View>(R.id.rv_chat) as RecyclerView
         auth = Firebase.auth
-        adapter = ChatAdapter()
+
+        chatid_list = java.util.ArrayList()
+        chat_list = java.util.ArrayList()
+
+
+        adapter = ChatAdapter(chat_list)
         Database.nickname.child(auth.currentUser?.uid.toString()).child("chat").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                ChatTool.chatid_list.clear()
-                ChatTool.chat_list.clear()
+                chatid_list!!.clear()
+                chat_list!!.clear()
                 for (i in snapshot.children) {
-                    ChatTool.chatid_list.add(i.key!!)
+                    chatid_list!!.add(i.key!!)
                 }
                 Database.chat.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        for (i in ChatTool.chatid_list) {
+                        for (i in chatid_list!!) {
                             val j = snapshot.child(i!!)
                             val temp_update = j.child("update").getValue(String::class.java)
                             val temp_last = j.child("last").getValue(String::class.java)
@@ -56,7 +64,7 @@ class ChatFragment : Fragment() {
                             val temp_frontname = j.child("frontnickname").getValue(String::class.java)
                             val temp_endid = j.child("endid").getValue(String::class.java)
                             val temp_endname = j.child("endnickname").getValue(String::class.java)
-                            ChatTool.chat_list.add(
+                            chat_list!!.add(
                                 Chat(
                                     i, temp_update ?: "", temp_last ?: "",
                                     temp_frontid!!,
