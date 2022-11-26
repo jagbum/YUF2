@@ -1,7 +1,11 @@
 package com.example.yuf2.Setting
 
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.databinding.DataBindingUtil
 import com.example.yuf2.R
 import com.example.yuf2.databinding.ActivityUserInfoBinding
@@ -13,6 +17,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import java.io.ByteArrayOutputStream
 import java.lang.Exception
 
 class UserInfoActivity : AppCompatActivity() {
@@ -22,6 +28,9 @@ class UserInfoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserInfoBinding
     private lateinit var key: String
     private lateinit var uid: String
+
+
+
 //    private lateinit var nickname :String
 //    private lateinit var state :String
 
@@ -37,6 +46,11 @@ class UserInfoActivity : AppCompatActivity() {
 
         binding.save.setOnClickListener {
             edit()
+        }
+
+        binding.imageArea.setOnClickListener {
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, 100)
         }
 
         getData()
@@ -73,8 +87,43 @@ class UserInfoActivity : AppCompatActivity() {
 
         Database.nickname.child(uid).child("state").setValue(binding.state.text.toString())
 
+        imageUpload()
+
         finish()
 
+    }
+
+    private fun imageUpload(){
+        // Get the data from an ImageView as bytes
+
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+        val mountainsRef = storageRef.child(uid + ".jpg")
+
+
+        val imageView = binding.imageArea
+        imageView.isDrawingCacheEnabled = true
+        imageView.buildDrawingCache()
+        val bitmap = (imageView.drawable as BitmapDrawable).bitmap
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        var uploadTask = mountainsRef.putBytes(data)
+        uploadTask.addOnFailureListener {
+            // Handle unsuccessful uploads
+        }.addOnSuccessListener { taskSnapshot ->
+            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+            // ...
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode== RESULT_OK && requestCode==100){
+            binding.imageArea.setImageURI(data?.data)
+        }
     }
 
 

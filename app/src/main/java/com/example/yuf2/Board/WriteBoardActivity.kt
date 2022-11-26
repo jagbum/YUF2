@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import java.lang.Exception
 
-class WriteBoardActivity : AppCompatActivity() {
+class  WriteBoardActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var binding : ActivityWriteBoardBinding
