@@ -8,17 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
 import com.example.yuf2.R
 import com.example.yuf2.databinding.FragmentFriendBinding
 import com.example.yuf2.dataclass.Database
 import com.example.yuf2.dataclass.Friend
 import com.example.yuf2.dataclass.User
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class FriendFragment : Fragment() {
 
@@ -77,6 +80,7 @@ class FriendFragment : Fragment() {
 
         getMyProfile()
         getFriend()
+        getimage()
 
         return binding.root
     }
@@ -136,6 +140,21 @@ class FriendFragment : Fragment() {
 
         Database.nickname.child(auth.currentUser?.uid.toString()).child("Friend").addValueEventListener(postListener)
 
+    }
+
+    fun getimage(){
+
+        val profileImg = Firebase.storage.reference.child(auth.currentUser?.uid.toString()+ ".jpg")
+
+        val imageView = binding.myImage
+
+        profileImg.downloadUrl.addOnCompleteListener(OnCompleteListener{ task->
+            if(task.isSuccessful){
+                Glide.with(this).load(task.result).into(imageView)
+            }else{
+
+            }
+        })
     }
 
 }
