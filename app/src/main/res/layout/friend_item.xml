@@ -5,22 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_marginLeft="10dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:id="@+id/image"/>
 
         <TextView
             android:id="@+id/nickname"
             android:text="friend"
-            android:textSize="40dp"
+            android:textSize="35dp"
             android:layout_marginLeft="10dp"
             android:textColor="@color/black"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="45dp"/>
 
-    </LinearLayout>
 
 </LinearLayout>
 </layout>

@@ -109,7 +109,7 @@ class JoinActivity : AppCompatActivity() {
         val imgstorage = Firebase.storage
 
         val storageRef = imgstorage.reference
-        val mountainsRef = storageRef.child(key+ ".jpg")
+        val mountainsRef = storageRef.child(key+"jpg")
 
         val imageView = binding.image
         imageView.isDrawingCacheEnabled = true
