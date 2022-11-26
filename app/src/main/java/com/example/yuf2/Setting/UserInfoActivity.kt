@@ -7,11 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.example.yuf2.R
 import com.example.yuf2.databinding.ActivityUserInfoBinding
 import com.example.yuf2.dataclass.Database
 import com.example.yuf2.dataclass.Database.Companion.nickname
 import com.example.yuf2.dataclass.User
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -54,7 +56,23 @@ class UserInfoActivity : AppCompatActivity() {
         }
 
         getData()
+        getimage()
 
+    }
+
+    fun getimage(){
+
+        val profileImg = Firebase.storage.reference.child(uid+ ".jpg")
+
+        val imageView = binding.imageArea
+
+        profileImg.downloadUrl.addOnCompleteListener(OnCompleteListener{ task->
+            if(task.isSuccessful){
+                Glide.with(this).load(task.result).into(imageView)
+            }else{
+
+            }
+        })
     }
 
     fun getData() {
