@@ -30,10 +30,7 @@ class UserInfoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserInfoBinding
     private lateinit var key: String
     private lateinit var uid: String
-
-
-
-//    private lateinit var nickname :String
+    private lateinit var nickname :String
 //    private lateinit var state :String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,6 +82,10 @@ class UserInfoActivity : AppCompatActivity() {
 //                    nickname = item!!.nickname
                     //  state = item!!.state
 //                    binding.name.setText(item!!.nickname)
+
+                    nickname = item!!.nickname
+                    binding.name.text = item!!.nickname
+
                     binding.state.setText(item!!.state)
 
 
