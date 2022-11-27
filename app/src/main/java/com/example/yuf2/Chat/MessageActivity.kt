@@ -65,6 +65,7 @@ class MessageActivity : Activity() {
                     }
                     
                     adapter!!.notifyDataSetChanged()
+                    rv_message!!.smoothScrollToPosition(message_list!!.size + 1)
                 }
                 override fun onCancelled(error: DatabaseError) {}
             })
@@ -73,7 +74,7 @@ class MessageActivity : Activity() {
             val msg = Message(mynickname!!, et_message_message!!.text.toString(), ChatTool.getCurrenttime()!!)
             Database.chat.child(chatid!!).child("message").push().setValue(msg)
             Database.chat.child(chatid!!).child("update").setValue(ChatTool.getCurrenttime()!!)
-            Database.chat.child(chatid!!).child("last").setValue(msg)
+            Database.chat.child(chatid!!).child("last").setValue(et_message_message!!.text.toString())
 
             et_message_message!!.setText("")
             rv_message!!.smoothScrollToPosition(message_list!!.size + 1)
