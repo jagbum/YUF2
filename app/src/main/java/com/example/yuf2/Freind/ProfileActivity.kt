@@ -1,11 +1,9 @@
 package com.example.yuf2.Freind
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
@@ -48,6 +46,10 @@ class ProfileActivity : AppCompatActivity() {
 
         binding.deleteFriend.setOnClickListener {
             removeFriend()
+        }
+
+        binding.startchatting.setOnClickListener {
+            startChat()
         }
 
         getData()
@@ -107,6 +109,7 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     fun startChat(){
+
         val intent = Intent(this, MessageActivity::class.java)
         Database.nickname.addListenerForSingleValueEvent((object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
