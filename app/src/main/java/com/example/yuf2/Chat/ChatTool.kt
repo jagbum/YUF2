@@ -19,7 +19,7 @@ class ChatTool {
         private var auth : FirebaseAuth = Firebase.auth
         var check_make_chat = false
         var chatFragmentContext: Context? = null
-        fun createChat(str1: String, str2: String) {
+        fun createChat(con: Context?, str1: String, str2: String) {
             val flag = str1.compareTo(str2)
             check_make_chat = false
             val front: String
@@ -53,8 +53,8 @@ class ChatTool {
                         Database.nickname.child(front).child("chat").child(chatid).setValue(getCurrenttime());
                         Database.nickname.child(end).child("chat").child(chatid).setValue(getCurrenttime());
 
-                        Toast.makeText(chatFragmentContext, "채팅방 생성 성공 !!", Toast.LENGTH_SHORT).show()
-                    } else Toast.makeText(chatFragmentContext, "채팅방 생성 실패 !!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(con, "채팅방 생성 성공 !!", Toast.LENGTH_SHORT).show()
+                    } else Toast.makeText(con, "채팅방 생성 실패 !!", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onCancelled(error: DatabaseError) {}

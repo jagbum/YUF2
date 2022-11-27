@@ -63,7 +63,6 @@ class MessageActivity : Activity() {
                         val item = i.getValue(Message::class.java)
                         message_list!!.add(item!!)
                     }
-                    
                     adapter!!.notifyDataSetChanged()
                     rv_message!!.smoothScrollToPosition(message_list!!.size + 1)
                 }
@@ -78,8 +77,6 @@ class MessageActivity : Activity() {
 
             et_message_message!!.setText("")
             rv_message!!.smoothScrollToPosition(message_list!!.size + 1)
-
-
         }
     }
 

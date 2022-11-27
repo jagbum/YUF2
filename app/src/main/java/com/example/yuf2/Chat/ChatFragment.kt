@@ -115,7 +115,7 @@ class ChatFragment : Fragment() {
             ) { dialogInterface, i ->
                 et_chat_tid =
                     dialogView!!.findViewById<View>(R.id.et_chat_tid) as EditText
-                ChatTool.createChat(auth.currentUser?.uid.toString(), et_chat_tid!!.text.toString())
+                ChatTool.createChat(ChatTool.chatFragmentContext, auth.currentUser?.uid.toString(), et_chat_tid!!.text.toString())
             }
             dialog.setNegativeButton("취소", null)
             dialog.show()

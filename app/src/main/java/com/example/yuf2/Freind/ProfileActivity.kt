@@ -1,12 +1,17 @@
 package com.example.yuf2.Freind
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.yuf2.Board.CommentAdapter
+import com.example.yuf2.Chat.ChatTool
+import com.example.yuf2.Chat.MessageActivity
 import com.example.yuf2.R
 import com.example.yuf2.databinding.ActivityProfileBinding
 import com.example.yuf2.databinding.ActivityReadBoardBinding
@@ -102,7 +107,17 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     fun startChat(){
-
+        val intent = Intent(this, MessageActivity::class.java)
+        Database.nickname.addListenerForSingleValueEvent((object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                ChatTool.createChat(applicationContext,uid, key)
+                intent.putExtra("otherid", key)
+                intent.putExtra("othernickname", snapshot.child(key).child("nickname").getValue(String::class.java))
+                intent.putExtra("mynickname", snapshot.child(uid).child("nickname").getValue(String::class.java))
+                startActivity(intent)
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        }))
     }
 
 }
