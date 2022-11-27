@@ -24,7 +24,7 @@ class MessageActivity : Activity() {
     var bt_message_send: Button? = null
     var rv_message: RecyclerView? = null
     var chatid: String? = null
-    var message_list: ArrayList<Message>? = null
+    var message_list: ArrayList<Message>? = java.util.ArrayList()
     var adapter: MessageAdapter? = null
 
     companion object {
@@ -44,27 +44,28 @@ class MessageActivity : Activity() {
         mynickname = intent.getStringExtra("mynickname")
 
         chatid = ChatTool.getChatid(otherid!!, auth.currentUser?.uid.toString())
-        message_list = java.util.ArrayList()
+        message_list
         rv_message = findViewById<View>(R.id.rv_message) as RecyclerView
 
         val lm = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rv_message!!.layoutManager = lm
 
         adapter = MessageAdapter(message_list!!)
+        rv_message!!.adapter = adapter
+
         Database.chat.child(chatid!!).child("message")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     message_list!!.clear()
                     for (i in snapshot.children) {
-                        val temp_nickname = i.child("nickname").getValue(String::class.java)
-                        val temp_msg = i.child("msg").getValue(String::class.java)
-                        message_list!!.add(Message(temp_nickname!!, temp_msg!!, ChatTool.getCurrenttime()))
+                        val item = i.getValue(Message::class.java)
+                        message_list!!.add(item!!)
                     }
                     adapter!!.notifyDataSetChanged()
                 }
                 override fun onCancelled(error: DatabaseError) {}
             })
-        rv_message!!.adapter = adapter
+
         bt_message_send!!.setOnClickListener {
             val msg = et_message_message!!.text.toString()
             Database.chat.child(chatid!!).child("message").child(ChatTool.getCurrenttime()!!)
@@ -77,7 +78,7 @@ class MessageActivity : Activity() {
             et_message_message!!.setText("")
             rv_message!!.smoothScrollToPosition(message_list!!.size + 1)
 
-            Log.i("asdf", "123")
+
         }
     }
 
