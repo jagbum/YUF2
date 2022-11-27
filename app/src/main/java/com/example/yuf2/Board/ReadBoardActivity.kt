@@ -164,20 +164,6 @@ class ReadBoardActivity : AppCompatActivity() {
                         binding.follow.isVisible = true
                     }
 
-                    Database.nickname.child(uid).child("Friend").orderByChild("uid").equalTo(postUID)
-                        .addListenerForSingleValueEvent(object : ValueEventListener {
-                            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                if (!dataSnapshot.exists()) {
-                                } else {
-                                    binding.follow.isVisible = false
-                                }
-                            }
-
-                            override fun onCancelled(databaseError: DatabaseError) {
-
-                            }
-                        })
-
                 }catch (e: Exception){
 
                 }
