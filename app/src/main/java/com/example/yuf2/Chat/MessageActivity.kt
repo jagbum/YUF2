@@ -16,6 +16,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MessageActivity : Activity() {
@@ -61,17 +63,15 @@ class MessageActivity : Activity() {
                         val item = i.getValue(Message::class.java)
                         message_list!!.add(item!!)
                     }
+                    
                     adapter!!.notifyDataSetChanged()
                 }
                 override fun onCancelled(error: DatabaseError) {}
             })
 
         bt_message_send!!.setOnClickListener {
-            val msg = et_message_message!!.text.toString()
-            Database.chat.child(chatid!!).child("message").child(ChatTool.getCurrenttime()!!)
-                .child("msg").setValue(msg)
-            Database.chat.child(chatid!!).child("message").child(ChatTool.getCurrenttime()!!)
-                .child("nickname").setValue(mynickname)
+            val msg = Message(mynickname!!, et_message_message!!.text.toString(), ChatTool.getCurrenttime()!!)
+            Database.chat.child(chatid!!).child("message").push().setValue(msg)
             Database.chat.child(chatid!!).child("update").setValue(ChatTool.getCurrenttime()!!)
             Database.chat.child(chatid!!).child("last").setValue(msg)
 

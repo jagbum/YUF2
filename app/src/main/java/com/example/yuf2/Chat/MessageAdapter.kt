@@ -49,7 +49,7 @@ class MessageAdapter(var message_list: java.util.ArrayList<Message>) :
         fun setItem(item: Message) {
             tv_message_nickname.text = item.nickname
             tv_message_message.text = item.msg
-//            tv_message_update.text = ChatTool.getChangetime(item.update!!)
+            tv_message_update.text = item.update
             if (MessageActivity.mynickname.equals(item.nickname)) {
                 ll_message.gravity = Gravity.RIGHT
                 tv_message_message.setBackgroundColor(R.color.custom_yellow)
