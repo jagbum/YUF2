@@ -14,6 +14,7 @@ class Database {
         val BestBoard = Firebase.database.getReference("bestBoard")
         val comment = Firebase.database.getReference("comment")
         val chat = Firebase.database.getReference("chat")
+        val noti = Firebase.database.getReference("noti")
 
     }
 }

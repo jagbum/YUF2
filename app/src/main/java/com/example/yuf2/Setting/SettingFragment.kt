@@ -68,6 +68,13 @@ class  SettingFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.noti.setOnClickListener {
+
+            val intent = Intent(context, NotiActivity::class.java)
+            intent.putExtra("currentUID", auth.currentUser?.uid.toString())
+            startActivity(intent)
+        }
+
         return binding.root
     }
 
