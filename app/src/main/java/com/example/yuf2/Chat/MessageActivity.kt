@@ -81,6 +81,7 @@ class MessageActivity : Activity() {
     }
 
     fun init() {
+
         et_message_message = findViewById<View>(R.id.et_message_message) as EditText
         bt_message_send = findViewById<View>(R.id.bt_message_send) as Button
     }

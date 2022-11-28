@@ -17,6 +17,7 @@ class MessageAdapter(var message_list: java.util.ArrayList<Message>) :
 
 
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageHolder {
         val inflater = LayoutInflater.from(parent.context)
         val itemView: View = inflater.inflate(R.layout.item_message, parent, false)
