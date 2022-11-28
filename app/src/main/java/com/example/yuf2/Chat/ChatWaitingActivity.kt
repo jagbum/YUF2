@@ -39,6 +39,7 @@ class ChatWaitingActivity : AppCompatActivity() {
 
     override fun onBackPressed(){
         Database.randomChatQueue.child(auth.currentUser?.uid.toString()).removeValue()
+        finish()
     }
 
     fun insertQueue(){
@@ -82,7 +83,7 @@ class ChatWaitingActivity : AppCompatActivity() {
 
         ChatTool.createRandomChat(applicationContext,auth.currentUser?.uid.toString(),otherUID)
 
-        val intent = Intent(this, MessageActivity::class.java)
+        val intent = Intent(this, RMessageActivity::class.java)
         Database.nickname.addListenerForSingleValueEvent((object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 ChatTool.createChat(applicationContext,auth.currentUser?.uid.toString(), otherUID)

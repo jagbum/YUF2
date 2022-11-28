@@ -115,6 +115,9 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
+            android:name=".Chat.RMessageActivity"
+            android:exported="false" />
+        <activity
             android:name=".Chat.MessageActivity"
             android:exported="false" />
         <activity
