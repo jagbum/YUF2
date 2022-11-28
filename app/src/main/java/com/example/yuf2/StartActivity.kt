@@ -22,11 +22,11 @@ class StartActivity : AppCompatActivity() {
         if (auth.currentUser?.uid == null) {
             Handler().postDelayed({
                 startActivity(Intent(this, LoginActivity::class.java))
-            }, 1000)
+            }, 0)
         } else {
             Handler().postDelayed({
                 startActivity(Intent(this, MainActivity::class.java))
-            }, 1000)
+            }, 0)
 
         }
     }
