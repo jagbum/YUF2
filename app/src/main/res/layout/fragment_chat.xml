@@ -23,7 +23,7 @@
                 android:id="@+id/write"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="렌덤 채팅"
+                android:text="랜덤 채팅"
                 app:layout_constraintEnd_toStartOf="@+id/SearchPost"
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
