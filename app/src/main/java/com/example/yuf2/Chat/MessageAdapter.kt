@@ -57,6 +57,7 @@ class MessageAdapter(var message_list: java.util.ArrayList<Message>) :
             } else {
                 ll_message.gravity = Gravity.LEFT
                 tv_message_message.setBackgroundColor(R.color.white)
+
             }
         }
     }
