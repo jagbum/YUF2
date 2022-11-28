@@ -55,7 +55,7 @@ class RMessageActivity : Activity() {
         adapter = RMessageAdapter(message_list!!)
         rv_rmessage!!.adapter = adapter
 
-        Database.chat.child(chatid!!).child("message")
+        Database.randomChat.child(chatid!!).child("message")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     message_list!!.clear()

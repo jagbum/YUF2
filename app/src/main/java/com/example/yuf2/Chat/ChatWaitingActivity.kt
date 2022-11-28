@@ -47,39 +47,30 @@ class ChatWaitingActivity : AppCompatActivity() {
     }
 
     fun chatWait(){
-        val postListener = object : ValueEventListener {
+        val waitListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-
                 waitList.clear()
-
                 for (dataModel in dataSnapshot.children) {
                     val item = dataModel.getValue(String::class.java)
                     waitList.add(item!!)
-                    Log.i("king", item)
-                    waitListSize = waitList.size
-
                 }
-
-                if(waitList.size ==1){
-
-                }else {
+                if(waitList.size != 1)
+                {
+                    Database.randomChatQueue.child(auth.currentUser?.uid.toString()).removeValue()
+                    waitList.remove(auth.currentUser?.uid.toString())
+                    otherUID = waitList.random()
                     match()
+                    Database.randomChatQueue.removeEventListener(this)
                 }
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
-
             }
         }
-
-        Database.randomChatQueue.addValueEventListener(postListener)
+        Database.randomChatQueue.addValueEventListener(waitListener)
 
     }
 
     fun match(){
-        Log.i("king", waitList.toString())
-        otherUID = waitList.random()
-
         val intent = Intent(this, RMessageActivity::class.java)
         Database.nickname.addListenerForSingleValueEvent((object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
