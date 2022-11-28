@@ -45,6 +45,7 @@ class MessageAdapter(var message_list: java.util.ArrayList<Message>) :
             ll_message = itemView.findViewById<View>(R.id.ll_message) as LinearLayout
         }
 
+
         @SuppressLint("ResourceAsColor")
         fun setItem(item: Message) {
             tv_message_nickname.text = item.nickname
@@ -52,10 +53,11 @@ class MessageAdapter(var message_list: java.util.ArrayList<Message>) :
             tv_message_update.text = item.update
             if (MessageActivity.mynickname.equals(item.nickname)) {
                 ll_message.gravity = Gravity.RIGHT
-                tv_message_message.setBackgroundColor(R.color.custom_yellow)
+                tv_message_message.setBackgroundColor(R.color.custom_realyellow)
             } else {
                 ll_message.gravity = Gravity.LEFT
                 tv_message_message.setBackgroundColor(R.color.white)
+
             }
         }
     }
