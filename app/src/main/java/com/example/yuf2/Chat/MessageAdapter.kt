@@ -45,6 +45,7 @@ class MessageAdapter(var message_list: java.util.ArrayList<Message>) :
             ll_message = itemView.findViewById<View>(R.id.ll_message) as LinearLayout
         }
 
+
         @SuppressLint("ResourceAsColor")
         fun setItem(item: Message) {
             tv_message_nickname.text = item.nickname
