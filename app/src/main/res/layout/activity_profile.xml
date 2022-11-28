@@ -29,6 +29,7 @@
             </LinearLayout>
 
 
+
         <Button
             android:backgroundTint="@color/custom_blue"
             android:id="@+id/deleteFriend"
