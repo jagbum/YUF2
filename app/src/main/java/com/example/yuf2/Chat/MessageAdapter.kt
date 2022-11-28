@@ -52,7 +52,7 @@ class MessageAdapter(var message_list: java.util.ArrayList<Message>) :
             tv_message_update.text = item.update
             if (MessageActivity.mynickname.equals(item.nickname)) {
                 ll_message.gravity = Gravity.RIGHT
-                tv_message_message.setBackgroundColor(R.color.custom_yellow)
+                tv_message_message.setBackgroundColor(R.color.custom_realyellow)
             } else {
                 ll_message.gravity = Gravity.LEFT
                 tv_message_message.setBackgroundColor(R.color.white)
