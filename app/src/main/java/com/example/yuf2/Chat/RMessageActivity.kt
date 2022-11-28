@@ -45,6 +45,8 @@ class RMessageActivity : Activity() {
         othernickname = intent.getStringExtra("othernickname")
         mynickname = intent.getStringExtra("mynickname")
 
+        Database.randomChatQueue.child(auth.currentUser?.uid.toString()).removeValue()
+
         chatid = ChatTool.getChatid(otherid!!, auth.currentUser?.uid.toString())
         message_list
         rv_rmessage = findViewById<View>(R.id.rv_rmessage) as RecyclerView
