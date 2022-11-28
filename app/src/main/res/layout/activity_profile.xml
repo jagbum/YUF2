@@ -41,21 +41,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="5dp"
-                app:layout_constraintBottom_toTopOf="@+id/name"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="250dp"
-                    android:layout_height="250dp"
-                    app:civ_border_color="@color/white"
-                    app:civ_border_overlay="true"
-                    app:civ_border_width="20dp" />
-
             </androidx.cardview.widget.CardView>
-
 
 
             <TextView
@@ -63,53 +54,70 @@
                 android:layout_width="wrap_content"
                 android:layout_height="65dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="388dp"
                 android:text="이름"
                 android:textSize="45dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.574" />
 
             <TextView
                 android:id="@+id/state"
                 android:layout_width="wrap_content"
                 android:layout_height="86dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="472dp"
                 android:textSize="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.726" />
 
             <Button
-                android:backgroundTint="@color/custom_blue"
                 android:id="@+id/deleteFriend"
-                android:layout_width="110dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="296dp"
-                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/custom_blue"
                 android:gravity="center"
                 android:text="친구삭제"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.95"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.025">
 
 
             </Button>
 
             <Button
-                android:backgroundTint="@color/custom_blue"
                 android:id="@+id/startchatting"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="148dp"
-                android:layout_marginTop="604dp"
+                android:backgroundTint="@color/custom_blue"
                 android:gravity="center"
                 android:text="채팅하기"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.855">
 
 
             </Button>
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                app:civ_border_color="@color/white"
+                app:civ_border_overlay="true"
+                app:civ_border_width="20dp"
+                tools:layout_editor_absoluteX="79dp"
+                tools:layout_editor_absoluteY="79dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
