@@ -120,12 +120,13 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
+                android:id="@+id/like"
 
                 android:src="@drawable/good"></ImageView>
 
 
             <TextView
-                android:id="@+id/like"
+                android:id="@+id/likePoint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"

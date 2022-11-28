@@ -152,7 +152,7 @@ class ReadBoardActivity : AppCompatActivity() {
                     binding.nickname.text = item!!.nickname
                     binding.Title.text = item!!.title
                     binding.Content.text = item!!.content
-                    binding.like.text = item!!.starCount.toString()
+                    binding.likePoint.text = item!!.starCount.toString()
                     auth = FirebaseAuth.getInstance()
 
                     val presentuid = auth.currentUser?.uid.toString()
