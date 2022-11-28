@@ -78,6 +78,7 @@ class ChatWaitingActivity : AppCompatActivity() {
                 intent.putExtra("othernickname", snapshot.child(otherUID).child("nickname").getValue(String::class.java))
                 intent.putExtra("mynickname", snapshot.child(auth.currentUser?.uid.toString()).child("nickname").getValue(String::class.java))
                 startActivity(intent)
+                finish()
             }
             override fun onCancelled(error: DatabaseError) {}
         }))
