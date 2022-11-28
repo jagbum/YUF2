@@ -80,13 +80,10 @@ class ChatWaitingActivity : AppCompatActivity() {
         Log.i("king", waitList.toString())
         otherUID = waitList.random()
 
-
-        ChatTool.createRandomChat(applicationContext,auth.currentUser?.uid.toString(),otherUID)
-
         val intent = Intent(this, RMessageActivity::class.java)
         Database.nickname.addListenerForSingleValueEvent((object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                ChatTool.createChat(applicationContext,auth.currentUser?.uid.toString(), otherUID)
+                ChatTool.createRandomChat(applicationContext,auth.currentUser?.uid.toString(),otherUID)
                 intent.putExtra("otherid", otherUID)
                 intent.putExtra("othernickname", snapshot.child(otherUID).child("nickname").getValue(String::class.java))
                 intent.putExtra("mynickname", snapshot.child(auth.currentUser?.uid.toString()).child("nickname").getValue(String::class.java))
