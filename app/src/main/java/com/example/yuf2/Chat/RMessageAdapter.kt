@@ -13,17 +13,17 @@ import com.example.yuf2.R
 
 
 class RMessageAdapter(var message_list: java.util.ArrayList<Message>) :
-    RecyclerView.Adapter<RMessageAdapter.MessageHolder>() {
+    RecyclerView.Adapter<RMessageAdapter.RMessageHolder>() {
 
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RMessageHolder {
         val inflater = LayoutInflater.from(parent.context)
         val itemView: View = inflater.inflate(R.layout.item_rmessage, parent, false)
-        return MessageHolder(itemView)
+        return RMessageHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: MessageHolder, position: Int) {
+    override fun onBindViewHolder(holder: RMessageHolder, position: Int) {
         val temp = message_list[position]
         holder.setItem(temp)
     }
@@ -32,7 +32,7 @@ class RMessageAdapter(var message_list: java.util.ArrayList<Message>) :
         return message_list.size
     }
 
-    class MessageHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class RMessageHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tv_rmessage_nickname: TextView
         var tv_rmessage_message: TextView
         var tv_rmessage_update: TextView
@@ -51,7 +51,7 @@ class RMessageAdapter(var message_list: java.util.ArrayList<Message>) :
             tv_rmessage_nickname.text = item.nickname
             tv_rmessage_message.text = item.msg
             tv_rmessage_update.text = item.update
-            if (MessageActivity.mynickname.equals(item.nickname)) {
+            if (RMessageActivity.mynickname.equals(item.nickname)) {
                 ll_rmessage.gravity = Gravity.RIGHT
                 tv_rmessage_message.setBackgroundColor(R.color.custom_realyellow)
             } else {

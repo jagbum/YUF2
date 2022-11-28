@@ -27,7 +27,7 @@ class RMessageActivity : Activity() {
     var rv_rmessage: RecyclerView? = null
     var chatid: String? = null
     var message_list: ArrayList<Message>? = java.util.ArrayList()
-    var adapter: MessageAdapter? = null
+    var adapter: RMessageAdapter? = null
 
     companion object {
         var otherid: String? = null
@@ -52,7 +52,7 @@ class RMessageActivity : Activity() {
         val lm = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rv_rmessage!!.layoutManager = lm
 
-        adapter = MessageAdapter(message_list!!)
+        adapter = RMessageAdapter(message_list!!)
         rv_rmessage!!.adapter = adapter
 
         Database.chat.child(chatid!!).child("message")
