@@ -1,4 +1,4 @@
-package com.example.yuf2.Chat
+package com.example.yuf2.dataclass
 
 class Chat(
     var chatid: String,

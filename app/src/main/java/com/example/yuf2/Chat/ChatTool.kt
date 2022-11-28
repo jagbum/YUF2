@@ -25,7 +25,7 @@ class ChatTool {
             val front: String
             val end: String
             if (flag == 0) {
-                Toast.makeText(chatFragmentContext, "채팅방 생성 실패 !!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(con, "채팅방 생성 실패 !!", Toast.LENGTH_SHORT).show()
                 return
             } else if (flag < 0) {
                 front = str1
@@ -60,6 +60,45 @@ class ChatTool {
                 override fun onCancelled(error: DatabaseError) {}
             })
         }
+
+        fun createRandomChat(con: Context?, str1: String, str2: String) {
+            val flag = str1.compareTo(str2)
+            check_make_chat = false
+            val front: String
+            val end: String
+            if (flag == 0) {
+                Toast.makeText(con, "채팅방 생성 실패 !!", Toast.LENGTH_SHORT).show()
+                return
+            } else if (flag < 0) {
+                front = str1
+                end = str2
+            } else {
+                front = str2
+                end = str1
+            }
+            val chatid = front + end
+            Database.nickname.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val is_front = snapshot.child(front).hasChildren()
+                    val is_end = snapshot.child(end).hasChildren()
+                    if (is_front && is_end) {
+                        val front_nickname: String?
+                        val end_nickname: String?
+                        front_nickname = snapshot.child(front).child("nickname").getValue(String::class.java)
+                        end_nickname = snapshot.child(end).child("nickname").getValue(String::class.java)
+                        Database.randomChat.child(chatid).child("frontid").setValue(front)
+                        Database.randomChat.child(chatid).child("frontnickname").setValue(front_nickname)
+                        Database.randomChat.child(chatid).child("endid").setValue(end)
+                        Database.randomChat.child(chatid).child("endnickname").setValue(end_nickname)
+                        Database.randomChat.child(chatid).child("update").setValue(getCurrenttime())
+                        Toast.makeText(con, "매칭 성공 !!", Toast.LENGTH_SHORT).show()
+                    } else Toast.makeText(con, "채팅방 생성 실패 !!", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onCancelled(error: DatabaseError) {}
+            })
+        }
+
         fun getChatid(str1: String, str2: String): String? {
             val flag = str1.compareTo(str2)
             val front: String

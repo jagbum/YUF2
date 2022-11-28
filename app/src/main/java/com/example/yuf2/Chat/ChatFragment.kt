@@ -1,6 +1,7 @@
 package com.example.yuf2.Chat
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.yuf2.Home.BestBoardActivity
 import com.example.yuf2.R
 import com.example.yuf2.databinding.FragmentChatBinding
+import com.example.yuf2.dataclass.Chat
 import com.example.yuf2.dataclass.Database
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -106,25 +109,11 @@ class ChatFragment : Fragment() {
         }
 
         binding.write.setOnClickListener{
-            dialogView = View.inflate(context, R.layout.dialog_chat_create, null) as View
-            val dialog = AlertDialog.Builder(context)
-            dialog.setTitle("상대방 아이디를 입력하세요.")
-            dialog.setView(dialogView)
-            dialog.setPositiveButton(
-                "확인"
-            ) { dialogInterface, i ->
-                et_chat_tid =
-                    dialogView!!.findViewById<View>(R.id.et_chat_tid) as EditText
-                ChatTool.createChat(ChatTool.chatFragmentContext, auth.currentUser?.uid.toString(), et_chat_tid!!.text.toString())
-            }
-            dialog.setNegativeButton("취소", null)
-            dialog.show()
+            val intent = Intent(context, ChatWaitingActivity::class.java)
+            startActivity(intent)
         }
 
         return binding.root
     }
 
-
-/*
-*/
 }

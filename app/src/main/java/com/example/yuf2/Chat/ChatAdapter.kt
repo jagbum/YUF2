@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yuf2.Chat.ChatAdapter.ChatHolder
 import com.example.yuf2.R
+import com.example.yuf2.dataclass.Chat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
