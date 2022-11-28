@@ -99,6 +99,7 @@
                     android:layout_margin="10dp"
                     android:backgroundTint="@color/custom_blue"
                     android:text="디스플레이"
+
                     android:textSize="30dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
