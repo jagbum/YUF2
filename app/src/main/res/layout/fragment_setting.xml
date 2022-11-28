@@ -70,7 +70,7 @@
             android:id="@+id/logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_margin="10dp"
             android:text="로그아웃"
             android:textSize="30dp"
 
@@ -92,18 +92,17 @@
 
                     ></ImageView>
 
-        <TextView
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/custom_blue"
-            android:id="@+id/display"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="디스플레이"
-            android:textSize="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/display"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/custom_blue"
+                    android:text="디스플레이"
+                    android:textSize="30dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
 
 
 
@@ -122,7 +121,7 @@
             android:id="@+id/myInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_margin="10dp"
             android:text="개인정보"
             android:textSize="30dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -146,7 +145,7 @@
             android:id="@+id/lock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_margin="10dp"
             android:text="잠금 설정"
             android:textSize="30dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -170,7 +169,7 @@
             android:id="@+id/alarm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_margin="10dp"
             android:text="알람"
             android:textSize="30dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -194,7 +193,7 @@
             android:id="@+id/noti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_margin="10dp"
             android:text="공지사항"
             android:textSize="30dp"
             app:layout_constraintStart_toStartOf="parent"
