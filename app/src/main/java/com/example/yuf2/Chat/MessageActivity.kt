@@ -47,7 +47,7 @@ class MessageActivity : Activity() {
         othernickname = intent.getStringExtra("othernickname")
         mynickname = intent.getStringExtra("mynickname")
 
-        tv_message_othernickname!!.text = otherid
+        tv_message_othernickname!!.text = othernickname
 
         chatid = ChatTool.getChatid(otherid!!, auth.currentUser?.uid.toString())
         rv_message = findViewById<View>(R.id.rv_message) as RecyclerView
