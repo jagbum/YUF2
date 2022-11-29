@@ -23,15 +23,22 @@
             android:textColor="@color/black"
             android:id="@+id/tv_rmessage_othernickname"
             ></TextView>
-
         <ImageView
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:text="친구 추가"
             android:src="@drawable/addfriend"
-            android:backgroundTint="@color/custom_blue"
+            android:layout_gravity="right"
+            android:id="@+id/iv_rmessage_exitmessage"
+            ></ImageView>
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="50dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/addfriend"
             android:layout_gravity="right"
             android:id="@+id/iv_rmessage_addfriend"
             ></ImageView>

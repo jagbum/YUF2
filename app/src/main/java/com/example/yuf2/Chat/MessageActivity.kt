@@ -6,7 +6,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yuf2.R
@@ -21,15 +23,17 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class MessageActivity : Activity() {
+class MessageActivity : AppCompatActivity() {
     private var auth: FirebaseAuth = Firebase.auth
     var et_message_message: EditText? = null
     var bt_message_send: Button? = null
     var tv_message_othernickname: TextView? = null
+    var iv_message_exitmessage: ImageView? = null
     var rv_message: RecyclerView? = null
     var chatid: String? = null
     var message_list: ArrayList<Message>? = java.util.ArrayList()
     var adapter: MessageAdapter? = null
+    private lateinit var listener: ValueEventListener
 
     companion object {
         var otherid: String? = null
@@ -58,8 +62,7 @@ class MessageActivity : Activity() {
         adapter = MessageAdapter(message_list!!)
         rv_message!!.adapter = adapter
 
-        Database.chat.child(chatid!!).child("message")
-            .addValueEventListener(object : ValueEventListener {
+        listener = object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     message_list!!.clear()
                     for (i in snapshot.children) {
@@ -69,8 +72,11 @@ class MessageActivity : Activity() {
                     adapter!!.notifyDataSetChanged()
                     rv_message!!.smoothScrollToPosition(message_list!!.size + 1)
                 }
+
                 override fun onCancelled(error: DatabaseError) {}
-            })
+            }
+        Database.chat.child(chatid!!).child("message").addValueEventListener(listener);
+
 
         bt_message_send!!.setOnClickListener {
             val msg = Message(mynickname!!, et_message_message!!.text.toString(), ChatTool.getCurrenttime()!!)
@@ -80,12 +86,20 @@ class MessageActivity : Activity() {
 
             et_message_message!!.setText("")
             rv_message!!.smoothScrollToPosition(message_list!!.size + 1)
+
         }
+        iv_message_exitmessage!!.setOnClickListener {
+            Database.chat.child(chatid!!).child("message").removeEventListener(listener)
+            Database.nickname.child(auth.currentUser?.uid.toString()).child("chat").child(chatid!!).removeValue()
+            finish()
+        }
+
     }
 
     fun init() {
         tv_message_othernickname = findViewById<View>(R.id.tv_message_othernickname) as TextView
         et_message_message = findViewById<View>(R.id.et_message_message) as EditText
         bt_message_send = findViewById<View>(R.id.bt_message_send) as Button
+        iv_message_exitmessage = findViewById<View>(R.id.iv_message_exitmessage) as ImageView
     }
 }
