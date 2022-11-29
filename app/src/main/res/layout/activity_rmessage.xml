@@ -23,6 +23,7 @@
             android:textColor="@color/black"
             android:id="@+id/tv_rmessage_othernickname"
             ></TextView>
+
         <ImageView
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
@@ -30,9 +31,8 @@
             android:layout_height="30dp"
             android:src="@drawable/chat_exit"
             android:layout_gravity="right"
-            android:id="@+id/iv_rmessage_exitmessage"
+            android:id="@+id/iv_rmessage_exitchat"
             ></ImageView>
-
         <ImageView
             android:layout_marginTop="5dp"
             android:layout_marginRight="50dp"
