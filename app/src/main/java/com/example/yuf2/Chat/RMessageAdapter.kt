@@ -51,7 +51,7 @@ class RMessageAdapter(var message_list: java.util.ArrayList<Message>) :
             tv_rmessage_message = itemView.findViewById<View>(R.id.tv_rmessage_message) as TextView
             tv_rmessage_update = itemView.findViewById<View>(R.id.tv_rmessage_update) as TextView
             ll_rmessage = itemView.findViewById<View>(R.id.ll_rmessage) as LinearLayout
-            back = itemView.findViewById<View>(R.id.ll_rmessage) as LinearLayout
+            back = itemView.findViewById<View>(R.id.back) as LinearLayout
 
         }
 
