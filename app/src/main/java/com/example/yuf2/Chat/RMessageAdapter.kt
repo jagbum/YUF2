@@ -1,6 +1,7 @@
 package com.example.yuf2.Chat
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -25,6 +26,7 @@ class RMessageAdapter(var message_list: java.util.ArrayList<Message>) :
 
     override fun onBindViewHolder(holder: RMessageHolder, position: Int) {
         val temp = message_list[position]
+
         holder.setItem(temp)
     }
 
@@ -53,11 +55,8 @@ class RMessageAdapter(var message_list: java.util.ArrayList<Message>) :
             tv_rmessage_update.text = item.update
             if (RMessageActivity.mynickname.equals(item.nickname)) {
                 ll_rmessage.gravity = Gravity.RIGHT
-                tv_rmessage_message.setBackgroundColor(R.color.custom_realyellow)
             } else {
                 ll_rmessage.gravity = Gravity.LEFT
-                tv_rmessage_message.setBackgroundColor(R.color.white)
-
             }
         }
     }

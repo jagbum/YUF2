@@ -39,7 +39,6 @@ class ChatWaitingActivity : AppCompatActivity() {
 
     override fun onBackPressed(){
         Database.randomChatQueue.child(auth.currentUser?.uid.toString()).removeValue()
-        finish()
     }
 
     fun insertQueue(){
@@ -56,6 +55,7 @@ class ChatWaitingActivity : AppCompatActivity() {
                 }
                 if(waitList.size != 1)
                 {
+                    Database.randomChatQueue.child(auth.currentUser?.uid.toString()).removeValue()
                     waitList.remove(auth.currentUser?.uid.toString())
                     otherUID = waitList.random()
                     match()
