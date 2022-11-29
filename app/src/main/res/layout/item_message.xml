@@ -19,7 +19,6 @@
             android:id="@+id/tv_message_nickname"></TextView>
         <LinearLayout
             android:id="@+id/back"
-            android:background="@color/custom_realyellow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <TextView

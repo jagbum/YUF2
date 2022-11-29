@@ -27,7 +27,12 @@ class MessageAdapter(var message_list: java.util.ArrayList<Message>) :
 
     override fun onBindViewHolder(holder: MessageHolder, position: Int) {
         val temp = message_list[position]
+        if (MessageActivity.mynickname.equals(temp.nickname)) {
+            holder.back.setBackgroundColor(Color.rgb(251,244,141))
+        } else {
+            holder.back.setBackgroundColor(Color.rgb(222,226,230))
 
+        }
         holder.setItem(temp)
     }
 
@@ -40,12 +45,14 @@ class MessageAdapter(var message_list: java.util.ArrayList<Message>) :
         var tv_message_message: TextView
         var tv_message_update: TextView
         var ll_message: LinearLayout
+        var back: LinearLayout
 
         init {
             tv_message_nickname = itemView.findViewById<View>(R.id.tv_message_nickname) as TextView
             tv_message_message = itemView.findViewById<View>(R.id.tv_message_message) as TextView
             tv_message_update = itemView.findViewById<View>(R.id.tv_message_update) as TextView
             ll_message = itemView.findViewById<View>(R.id.ll_message) as LinearLayout
+            back = itemView.findViewById<View>(R.id.back) as LinearLayout
         }
 
 

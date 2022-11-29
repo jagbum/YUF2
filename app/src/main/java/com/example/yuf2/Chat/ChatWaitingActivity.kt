@@ -7,6 +7,8 @@ import android.os.Handler
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.databinding.DataBindingUtil
+import com.example.yuf2.MainActivity
 import com.example.yuf2.R
 import com.example.yuf2.databinding.ActivityChatWaitingBinding
 import com.example.yuf2.dataclass.Database
@@ -28,6 +30,9 @@ class ChatWaitingActivity : AppCompatActivity() {
     private lateinit var otherUID: String
     private var waitListSize: Int =0
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_chat_waiting)
+
         auth = Firebase.auth
 
         super.onCreate(savedInstanceState)
@@ -37,9 +42,8 @@ class ChatWaitingActivity : AppCompatActivity() {
         chatWait()
     }
 
-    override fun onBackPressed(){
-        Database.randomChatQueue.child(auth.currentUser?.uid.toString()).removeValue()
-    }
+
+
 
     fun insertQueue(){
         Database.randomChatQueue.child(auth.currentUser?.uid.toString()).setValue(auth.currentUser?.uid.toString())
