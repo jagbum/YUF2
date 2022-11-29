@@ -5,15 +5,21 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.yuf2.databinding.ActivityJoinBinding
 import com.example.yuf2.dataclass.Database
+import com.example.yuf2.dataclass.Friend
+import com.example.yuf2.dataclass.FriendNoti
 import com.example.yuf2.dataclass.User
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
@@ -29,6 +35,9 @@ class JoinActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityJoinBinding
 
+    private var i=0
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join)
@@ -36,6 +45,10 @@ class JoinActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_join)
+
+        binding.checkID.setOnClickListener {
+            checkID()
+        }
 
         binding.join.setOnClickListener{
             join()
@@ -60,31 +73,46 @@ class JoinActivity : AppCompatActivity() {
             checkID = false
         }
 
-        if(checkID){
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        var uid = task.getResult().getUser()?.getUid().toString()
+        if(i==1) {
+            if (checkID) {
+
+                auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+
+                            var uid = task.getResult().getUser()?.getUid().toString()
+                            Log.i("tag", i.toString())
+
+                            Database.user.child(studentID)
+                                .setValue(User(name, nickname, studentID, email, password))
+                            Database.nickname.child(uid)
+                                .setValue(User(name, nickname, studentID, email, password))
+                            saveImg(uid)
+                            Toast.makeText(this, "회원가입을 완료했습니다!\n 로그인 해주세요!", Toast.LENGTH_LONG)
+                                .show()
+
+                            val intent = Intent(this, LoginActivity::class.java)
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
 
 
-                        Database.user.child(studentID).setValue(User(name,nickname, studentID, email,password))
-                        Database.nickname.child(uid).setValue(User(name,nickname, studentID, email,password))
-                        saveImg(uid)
-                        Toast.makeText(this,"회원가입을 완료했습니다!\n 로그인 해주세요!", Toast.LENGTH_LONG).show()
+                        } else {
+                            Log.i("tag", i.toString())
 
+                            Toast.makeText(this, "다시 시도해주세요!", Toast.LENGTH_LONG).show()
 
-                        val intent = Intent(this,LoginActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
-
-
-                    } else {
-                        Toast.makeText(this,"다시 시도해주세요!", Toast.LENGTH_LONG).show()
-
+                        }
                     }
-                }
+
+            }
+        }else{
+            Toast.makeText(applicationContext, "사용할 수 없는 이메일입니다.", Toast.LENGTH_SHORT).show()
+
         }
+
     }
+
 
     fun getImg(){
 
@@ -102,6 +130,28 @@ class JoinActivity : AppCompatActivity() {
 
             }
         })
+    }
+    fun checkID(){
+
+        val email = binding.ID.text.toString()
+
+        Database.nickname.orderByChild("id").equalTo(email)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        Toast.makeText(applicationContext, "사용 가능한 이메일입니다.", Toast.LENGTH_SHORT).show()
+                        i=1
+                    } else {
+                        Toast.makeText(applicationContext, "사용할 수 없는 이메일입니다.", Toast.LENGTH_SHORT).show()
+                        binding.ID.setText("")
+
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+
+                }
+            })
     }
 
     fun saveImg(key: String){

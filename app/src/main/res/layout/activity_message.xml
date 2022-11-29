@@ -21,7 +21,7 @@
             android:textSize="20dp"
             android:textStyle="bold"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:id="@+id/tv_message_othernickname"
             ></TextView>
         <ImageView
