@@ -47,38 +47,44 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
 <!--                android:layout_width="250dp"-->
 <!--                android:layout_height="250dp"/>-->
 
+
+
+
         <Button
+            android:background="@drawable/button_round"
+            android:layout_marginTop="20dp"
             android:id="@+id/dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/custom_blue"
+            android:drawableTop="@drawable/drawble_resize_home2"
+            android:text="dark" />
 
-            android:text="dark"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.894"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
 
         <Button
+            android:background="@drawable/button_round"
+            android:layout_marginTop="20dp"
             android:id="@+id/light"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:drawableTop="@drawable/drawble_resize_home"
             android:text="light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.092"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
+            />
 
         <Button
                 android:id="@+id/gibon"
-                android:layout_width="wrap_content"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="180dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="120dp"
                 android:text="Default"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.489"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+
+                android:backgroundTint="@color/custom_blue"
+            />
 
 <!--        </androidx.cardview.widget.CardView>-->
 

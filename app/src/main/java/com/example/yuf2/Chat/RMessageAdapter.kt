@@ -24,6 +24,7 @@ class RMessageAdapter(var message_list: java.util.ArrayList<Message>) :
         return RMessageHolder(itemView)
     }
 
+
     override fun onBindViewHolder(holder: RMessageHolder, position: Int) {
         val temp = message_list[position]
         if (RMessageActivity.mynickname.equals(temp.nickname)) {

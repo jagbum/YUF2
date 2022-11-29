@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:top="20dp"
+            android:width="80dp"
+            android:height="80dp"
+            android:drawable="@drawable/resize_home2" />
+    </layer-list>
