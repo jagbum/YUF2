@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="aaa"
             android:textSize="20dp"
-            android:textColor="@color/black"
+            android:textColor="#000001"
             android:id="@+id/tv_rmessage_message"></TextView>
         </LinearLayout>
         <TextView
