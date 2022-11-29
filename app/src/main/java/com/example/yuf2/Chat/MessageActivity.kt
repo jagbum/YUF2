@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yuf2.R
@@ -24,6 +25,7 @@ class MessageActivity : Activity() {
     private var auth: FirebaseAuth = Firebase.auth
     var et_message_message: EditText? = null
     var bt_message_send: Button? = null
+    var tv_message_othernickname: TextView? = null
     var rv_message: RecyclerView? = null
     var chatid: String? = null
     var message_list: ArrayList<Message>? = java.util.ArrayList()
@@ -45,8 +47,9 @@ class MessageActivity : Activity() {
         othernickname = intent.getStringExtra("othernickname")
         mynickname = intent.getStringExtra("mynickname")
 
+        tv_message_othernickname!!.text = otherid
+
         chatid = ChatTool.getChatid(otherid!!, auth.currentUser?.uid.toString())
-        message_list
         rv_message = findViewById<View>(R.id.rv_message) as RecyclerView
 
         val lm = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -81,7 +84,7 @@ class MessageActivity : Activity() {
     }
 
     fun init() {
-
+        tv_message_othernickname = findViewById<View>(R.id.tv_message_othernickname) as TextView
         et_message_message = findViewById<View>(R.id.et_message_message) as EditText
         bt_message_send = findViewById<View>(R.id.bt_message_send) as Button
     }

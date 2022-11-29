@@ -4,12 +4,13 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yuf2.R
 import com.example.yuf2.dataclass.Database
+import com.example.yuf2.dataclass.Friend
+import com.example.yuf2.dataclass.FriendNoti
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -25,6 +26,8 @@ class RMessageActivity : Activity() {
     var et_rmessage_message: EditText? = null
     var bt_rmessage_send: Button? = null
     var rv_rmessage: RecyclerView? = null
+    var iv_rmessage_addfriend: ImageView? = null
+    var tv_rmessage_othernickname: TextView? = null
     var chatid: String? = null
     var message_list: ArrayList<Message>? = java.util.ArrayList()
     var adapter: RMessageAdapter? = null
@@ -45,11 +48,18 @@ class RMessageActivity : Activity() {
         othernickname = intent.getStringExtra("othernickname")
         mynickname = intent.getStringExtra("mynickname")
 
+        tv_rmessage_othernickname!!.text = othernickname
+
+        iv_rmessage_addfriend!!.setOnClickListener(View.OnClickListener {
+            saveFriend()
+        })
+
         Database.randomChatQueue.child(auth.currentUser?.uid.toString()).removeValue()
 
         chatid = ChatTool.getChatid(otherid!!, auth.currentUser?.uid.toString())
         message_list
         rv_rmessage = findViewById<View>(R.id.rv_rmessage) as RecyclerView
+
 
         val lm = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rv_rmessage!!.layoutManager = lm
@@ -80,10 +90,39 @@ class RMessageActivity : Activity() {
             et_rmessage_message!!.setText("")
             rv_rmessage!!.smoothScrollToPosition(message_list!!.size + 1)
         }
+
+
     }
 
     fun init() {
         et_rmessage_message = findViewById<View>(R.id.et_rmessage_message) as EditText
         bt_rmessage_send = findViewById<View>(R.id.bt_rmessage_send) as Button
+        iv_rmessage_addfriend = findViewById<View>(R.id.iv_rmessage_addfriend) as ImageView
+        tv_rmessage_othernickname = findViewById<View>(R.id.tv_rmessage_othernickname) as TextView
+
+    }
+
+    fun saveFriend(){
+
+        Database.nickname.child(auth.currentUser?.uid.toString()).child("Friend").orderByChild("uid").equalTo(
+            otherid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        Database.nickname.child(auth.currentUser?.uid.toString()).child("Friend").child(otherid!!).setValue(Friend(
+                            othernickname!!, otherid!!))
+                        Database.nickname.child(otherid!!).child("notification").child("friendnoti").child(auth.currentUser?.uid.toString()).setValue(
+                            FriendNoti(mynickname!!,auth.currentUser?.uid.toString())
+                        )
+                        Toast.makeText(applicationContext, "친구에 추가하였습니다.", Toast.LENGTH_SHORT).show()
+
+                    } else {
+                        Toast.makeText(applicationContext, "친구에 추가된 사람입니다.", Toast.LENGTH_SHORT).show()                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+
+                }
+            })
     }
 }
