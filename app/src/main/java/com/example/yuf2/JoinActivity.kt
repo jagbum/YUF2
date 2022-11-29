@@ -34,7 +34,7 @@ class JoinActivity : AppCompatActivity() {
 
     private var check = false
 
-    val regex_pw = "^(?=.*[A-Za-z])(?=.*[$@$!%*#?&.])[A-Za-z$@$!%*#?&.]{10,18}$"
+    val regex_pw = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*\\W).{8,20}$"
     val regex_name = "^[가-힣]*$"
     val regex_email =
         "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$"

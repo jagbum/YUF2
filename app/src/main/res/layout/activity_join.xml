@@ -72,7 +72,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:hint="이름" />
+                        android:hint="이름(한글)" />
 
                     <EditText
                         android:id="@+id/nickname"
@@ -116,7 +116,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
-                        android:hint="비밀번호"
+                        android:hint="비밀번호 (특수문자, 영어, 포함 10에서 18자리)"
                         android:inputType="textPassword" />
 
                     <EditText
@@ -132,8 +132,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
-                        android:hint="전화번호"
-                        android:inputType="textPassword" />
+                        android:hint="전화번호(11자리)" />
 
 
                     <Button
