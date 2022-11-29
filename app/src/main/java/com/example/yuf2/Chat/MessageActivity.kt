@@ -29,6 +29,7 @@ class MessageActivity : AppCompatActivity() {
     var bt_message_send: Button? = null
     var tv_message_othernickname: TextView? = null
     var iv_message_exitmessage: ImageView? = null
+    var iv_message_exitchat: ImageView? = null
     var rv_message: RecyclerView? = null
     var chatid: String? = null
     var message_list: ArrayList<Message>? = java.util.ArrayList()
@@ -88,9 +89,12 @@ class MessageActivity : AppCompatActivity() {
             rv_message!!.smoothScrollToPosition(message_list!!.size + 1)
 
         }
-        iv_message_exitmessage!!.setOnClickListener {
+        iv_message_exitchat!!.setOnClickListener {
             Database.chat.child(chatid!!).child("message").removeEventListener(listener)
             Database.nickname.child(auth.currentUser?.uid.toString()).child("chat").child(chatid!!).removeValue()
+            finish()
+        }
+        iv_message_exitmessage!!.setOnClickListener{
             finish()
         }
 
@@ -101,5 +105,6 @@ class MessageActivity : AppCompatActivity() {
         et_message_message = findViewById<View>(R.id.et_message_message) as EditText
         bt_message_send = findViewById<View>(R.id.bt_message_send) as Button
         iv_message_exitmessage = findViewById<View>(R.id.iv_message_exitmessage) as ImageView
+        iv_message_exitchat = findViewById<View>(R.id.iv_message_exitchat) as ImageView
     }
 }

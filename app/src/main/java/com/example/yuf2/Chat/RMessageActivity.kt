@@ -29,8 +29,8 @@ class RMessageActivity : AppCompatActivity() {
     var bt_rmessage_send: Button? = null
     var rv_rmessage: RecyclerView? = null
     var iv_rmessage_addfriend: ImageView? = null
-    var iv_rmessage_exitmessage: ImageView? = null
     var tv_rmessage_othernickname: TextView? = null
+    var iv_rmessage_exitchat: ImageView? = null
     var chatid: String? = null
     var message_list: ArrayList<Message>? = java.util.ArrayList()
     var adapter: RMessageAdapter? = null
@@ -94,7 +94,7 @@ class RMessageActivity : AppCompatActivity() {
             et_rmessage_message!!.setText("")
             rv_rmessage!!.smoothScrollToPosition(message_list!!.size + 1)
         }
-        iv_rmessage_exitmessage!!.setOnClickListener {
+        iv_rmessage_exitchat!!.setOnClickListener {
             Database.chat.child(chatid!!).child("message").removeEventListener(listener)
             finish()
         }
@@ -107,7 +107,7 @@ class RMessageActivity : AppCompatActivity() {
         bt_rmessage_send = findViewById<View>(R.id.bt_rmessage_send) as Button
         iv_rmessage_addfriend = findViewById<View>(R.id.iv_rmessage_addfriend) as ImageView
         tv_rmessage_othernickname = findViewById<View>(R.id.tv_rmessage_othernickname) as TextView
-        iv_rmessage_exitmessage = findViewById<View>(R.id.iv_rmessage_exitmessage) as ImageView
+        iv_rmessage_exitchat = findViewById<View>(R.id.iv_rmessage_exitchat) as ImageView
 
     }
 
