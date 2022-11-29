@@ -46,9 +46,8 @@ class NotiActivity : AppCompatActivity() {
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Get Post object and use the values to update the UI
 
-                // ...
+                list.clear()
                 for(dataModel in dataSnapshot.children){
 
                     val item = dataModel.getValue(Noti::class.java)
