@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
+import java.util.regex.Pattern
 
 
 class JoinActivity : AppCompatActivity() {
@@ -33,7 +34,11 @@ class JoinActivity : AppCompatActivity() {
 
     private var check = false
 
-
+    val regex_pw = "^(?=.*[A-Za-z])(?=.*[$@$!%*#?&.])[A-Za-z$@$!%*#?&.]{10,18}$"
+    val regex_name = "^[가-힣]*$"
+    val regex_email =
+        "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$"
+    val regex_phone = "^[0-9]{11}$"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,56 +69,102 @@ class JoinActivity : AppCompatActivity() {
 
     }
 
-    fun join(){
+    fun join() {
         val name = binding.name.text.toString()
         val nickname = binding.nickname.text.toString()
         val studentID = binding.studentID.text.toString()
         val email = binding.ID.text.toString()
         val password = binding.PW.text.toString()
         val confirm = binding.PWCheck.text.toString()
+        val phone = binding.phone.text.toString()
         var checkID = true
 
-        if(!password.equals(confirm)){
-            Toast.makeText(this, "비밀번호가 틀립니다. \n같은 비밀번호를 입력해주세요.", Toast.LENGTH_LONG).show()
-            checkID = false
-        }
+        if (name.equals("")) Toast.makeText(applicationContext, "이름을 입력하세요.", Toast.LENGTH_SHORT)
+            .show()
+        else if (!Pattern.matches(regex_name, name)) Toast.makeText(
+            applicationContext,
+            "이름을 확인하세요.",
+            Toast.LENGTH_SHORT
+        ).show()
+        else if (password.equals("")) Toast.makeText(
+            applicationContext,
+            "비밀번호를 입력하세요.",
+            Toast.LENGTH_SHORT
+        ).show()
+        else if (!Pattern.matches(regex_pw, password)) Toast.makeText(
+            applicationContext,
+            "비밀번호는 특수문자 포함 8~15자리입니다.",
+            Toast.LENGTH_SHORT
+        ).show()
+        else if (phone.equals("")) Toast.makeText(
+            applicationContext,
+            "전화번호를 입력하세요.",
+            Toast.LENGTH_SHORT
+        ).show()
+        else if (!Pattern.matches(regex_phone, phone)) Toast.makeText(
+            applicationContext,
+            "올바른 전화번호가 아닙니다.",
+            Toast.LENGTH_SHORT
+        ).show()
+        else if (email.equals("")) Toast.makeText(
+            applicationContext,
+            "이메일을 입력하세요.",
+            Toast.LENGTH_SHORT
+        ).show()
+        else if (!Pattern.matches(regex_email, email)) Toast.makeText(
+            applicationContext,
+            "올바른 이메일이 아닙니다.",
+            Toast.LENGTH_SHORT
+        ).show()
+        else if (email.equals("")) Toast.makeText(
+            applicationContext,
+            "이메일을 입력하세요.",
+            Toast.LENGTH_SHORT
+        ).show()
+        else{
 
-        if(check) {
-            if (checkID) {
+            if (!password.equals(confirm)) {
+                Toast.makeText(this, "비밀번호가 틀립니다. \n같은 비밀번호를 입력해주세요.", Toast.LENGTH_LONG).show()
+                checkID = false
+            }
 
-                auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
+            if (check) {
+                if (checkID) {
 
-                            var uid = task.getResult().getUser()?.getUid().toString()
-                            Log.i("tag", check.toString())
+                    auth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(this) { task ->
+                            if (task.isSuccessful) {
 
-                            Database.user.child(studentID)
-                                .setValue(User(name, nickname, studentID, email, password))
-                            Database.nickname.child(uid)
-                                .setValue(User(name, nickname, studentID, email, password))
-                            saveImg(uid)
-                            Toast.makeText(this, "회원가입을 완료했습니다!\n 로그인 해주세요!", Toast.LENGTH_LONG)
-                                .show()
+                                var uid = task.getResult().getUser()?.getUid().toString()
+                                Log.i("tag", check.toString())
 
-                            val intent = Intent(this, LoginActivity::class.java)
-                            intent.flags =
-                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            startActivity(intent)
+                                Database.user.child(studentID)
+                                    .setValue(User(name, nickname, studentID, email, password))
+                                Database.nickname.child(uid)
+                                    .setValue(User(name, nickname, studentID, email, password))
+                                saveImg(uid)
+                                Toast.makeText(this, "회원가입을 완료했습니다!\n 로그인 해주세요!", Toast.LENGTH_LONG)
+                                    .show()
+
+                                val intent = Intent(this, LoginActivity::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                startActivity(intent)
 
 
-                        } else {
-                            Log.i("tag", check.toString())
+                            } else {
+                                Log.i("tag", check.toString())
 
-                            Toast.makeText(this, "다시 시도해주세요!", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this, "다시 시도해주세요!", Toast.LENGTH_LONG).show()
 
+                            }
                         }
-                    }
+
+                }
+            } else {
+                Toast.makeText(applicationContext, "사용할 수 없는 이메일입니다.", Toast.LENGTH_SHORT).show()
 
             }
-        }else{
-            Toast.makeText(applicationContext, "사용할 수 없는 이메일입니다.", Toast.LENGTH_SHORT).show()
-
         }
 
     }
