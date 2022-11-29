@@ -3,16 +3,16 @@ package com.example.yuf2
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.yuf2.databinding.ActivityJoinBinding
 import com.example.yuf2.dataclass.Database
-import com.example.yuf2.dataclass.Friend
-import com.example.yuf2.dataclass.FriendNoti
 import com.example.yuf2.dataclass.User
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -21,12 +21,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
-import kotlinx.coroutines.joinAll
 import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileInputStream
 
 
 class JoinActivity : AppCompatActivity() {
@@ -35,7 +31,8 @@ class JoinActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityJoinBinding
 
-    private var i=0
+    private var check = false
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +53,14 @@ class JoinActivity : AppCompatActivity() {
         }
 
         getImg()
+        binding.ID.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+                check = false
+            }
+
+            override fun afterTextChanged(editable: Editable) {}
+        })
 
     }
 
@@ -73,7 +78,7 @@ class JoinActivity : AppCompatActivity() {
             checkID = false
         }
 
-        if(i==1) {
+        if(check) {
             if (checkID) {
 
                 auth.createUserWithEmailAndPassword(email, password)
@@ -81,7 +86,7 @@ class JoinActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
 
                             var uid = task.getResult().getUser()?.getUid().toString()
-                            Log.i("tag", i.toString())
+                            Log.i("tag", check.toString())
 
                             Database.user.child(studentID)
                                 .setValue(User(name, nickname, studentID, email, password))
@@ -98,7 +103,7 @@ class JoinActivity : AppCompatActivity() {
 
 
                         } else {
-                            Log.i("tag", i.toString())
+                            Log.i("tag", check.toString())
 
                             Toast.makeText(this, "다시 시도해주세요!", Toast.LENGTH_LONG).show()
 
@@ -140,7 +145,7 @@ class JoinActivity : AppCompatActivity() {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (!dataSnapshot.exists()) {
                         Toast.makeText(applicationContext, "사용 가능한 이메일입니다.", Toast.LENGTH_SHORT).show()
-                        i=1
+                        check= true
                     } else {
                         Toast.makeText(applicationContext, "사용할 수 없는 이메일입니다.", Toast.LENGTH_SHORT).show()
                         binding.ID.setText("")
