@@ -22,6 +22,7 @@
             android:layout_weight="0"
             android:text="홈"
             android:textSize="30dp"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
