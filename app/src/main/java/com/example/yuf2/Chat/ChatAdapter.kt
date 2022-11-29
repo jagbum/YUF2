@@ -7,12 +7,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.yuf2.Chat.ChatAdapter.ChatHolder
 import com.example.yuf2.R
 import com.example.yuf2.dataclass.Chat
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import java.util.ArrayList
 
 class ChatAdapter(val list: java.util.ArrayList<Chat>?) : RecyclerView.Adapter<ChatHolder>() {
@@ -70,6 +73,31 @@ class ChatAdapter(val list: java.util.ArrayList<Chat>?) : RecyclerView.Adapter<C
         }
 
         fun setItem(item: Chat) {
+
+            if (auth.currentUser?.uid.toString().equals(item.frontid)){
+
+                val profileImg = Firebase.storage.reference.child(item.endid+ ".jpg")
+
+                profileImg.downloadUrl.addOnCompleteListener(OnCompleteListener{ task->
+                    if(task.isSuccessful){
+                        Glide.with(itemView!!).load(task.result).into(iv_chat_image!!)
+                    }else{
+
+                    }
+                })
+
+            } else{
+
+                val profileImg = Firebase.storage.reference.child(item.frontid+ ".jpg")
+
+                profileImg.downloadUrl.addOnCompleteListener(OnCompleteListener{ task->
+                    if(task.isSuccessful){
+                        Glide.with(itemView!!).load(task.result).into(iv_chat_image!!)
+                    }else{
+
+                    }
+                })
+            }
 
             tv_chat_name.text = if (auth.currentUser?.uid.toString().equals(item.frontid)) item.endnickname else item.frontnickname
             tv_chat_last.text = item.last
