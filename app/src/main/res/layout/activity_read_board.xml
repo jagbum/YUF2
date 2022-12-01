@@ -15,6 +15,16 @@
         android:background="@color/custom_blue2"
         >
 
+        <Button
+            android:layout_width="93dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/custom_blue"
+            android:text="신고"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -133,7 +143,6 @@
                 android:textSize="35dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
         </LinearLayout>
 
