@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import com.example.yuf2.R
@@ -41,8 +42,8 @@ class CommentAdapter (val comments: MutableList<comment>) : BaseAdapter() {
         val comment = view?.findViewById<TextView>(R.id.comment)
         comment!!.text = comments[p0].comment
 
-        val delete = view?.findViewById<TextView>(R.id.delete)
-        val report = view?.findViewById<TextView>(R.id.report)
+        val delete = view?.findViewById<ImageView>(R.id.delete)
+        val report = view?.findViewById<ImageView>(R.id.report)
 
 
         if(comments[p0].uid.equals(auth.currentUser?.uid.toString())){
