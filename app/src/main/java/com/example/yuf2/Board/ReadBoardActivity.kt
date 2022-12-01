@@ -162,6 +162,7 @@ class ReadBoardActivity : AppCompatActivity() {
                         binding.edit.isVisible = true
                     }else{
                         binding.follow.isVisible = true
+                        binding.report.isVisible = true
                     }
 
                 }catch (e: Exception){

@@ -5,10 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import androidx.core.view.isVisible
 import com.example.yuf2.R
 import com.example.yuf2.dataclass.comment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class CommentAdapter (val comments: MutableList<comment>) : BaseAdapter() {
+    private lateinit var auth: FirebaseAuth
 
     override fun getCount(): Int {
         return comments.size
@@ -23,6 +28,7 @@ class CommentAdapter (val comments: MutableList<comment>) : BaseAdapter() {
     }
 
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
+        auth = Firebase.auth
 
         var view = p1
         if(view == null){
@@ -34,6 +40,16 @@ class CommentAdapter (val comments: MutableList<comment>) : BaseAdapter() {
 
         val comment = view?.findViewById<TextView>(R.id.comment)
         comment!!.text = comments[p0].comment
+
+        val delete = view?.findViewById<TextView>(R.id.delete)
+        val report = view?.findViewById<TextView>(R.id.report)
+
+
+        if(comments[p0].uid.equals(auth.currentUser?.uid.toString())){
+            delete!!.isVisible= true
+        }else{
+            report!!.isVisible= true
+        }
 
         return view!!
     }
