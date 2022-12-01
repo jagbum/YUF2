@@ -12,46 +12,30 @@ class DisplayActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display)
-
-//        findViewById<RadioGroup>(R.id.radioMode).setOnCheckedChangeListener { _, checkedId ->
-//            when(checkedId) {
-//                R.id.rbLight -> {
-//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-//                }
-//                R.id.rbDark -> {
-//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-//                }
-//                R.id.rbDefault -> {
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-//                        //APP SDK 버전이 Q보다 클 때 (API 29 이상)
-//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-//                    } else {
-//                        //APP SDK 버전이 Q보다 작을 때 (API 29 미만)
-//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
-//                    }
-//                }
-//            }
-//        }
-
+        setdark()
+        setwhite()
+        setinit()
+    }
+    fun setdark()
+    {
         findViewById<Button>(R.id.dark).setOnClickListener {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
-
+    }
+    fun setwhite()
+    {
         findViewById<Button>(R.id.light).setOnClickListener {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
-
+    }
+    fun setinit()
+    {
         findViewById<Button>(R.id.gibon).setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                //APP SDK 버전이 Q보다 클 때 (API 29 이상)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
             } else {
-                //APP SDK 버전이 Q보다 작을 때 (API 29 미만)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
             }
         }
-
-
-
     }
 }

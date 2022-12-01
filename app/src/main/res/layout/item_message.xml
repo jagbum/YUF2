@@ -26,7 +26,7 @@
             android:layout_marginLeft="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="aaa"
+            android:text="내용"
             android:textSize="20dp"
             android:textColor="#000001"
             android:id="@+id/tv_message_message"></TextView>

@@ -22,11 +22,9 @@ class ChatWaitingActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var waitListener: ValueEventListener
-    private lateinit var binding : ActivityChatWaitingBinding
-
     private val waitList = mutableListOf<String>()
     private lateinit var otherUID: String
-    private var waitListSize: Int =0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         auth = Firebase.auth
 

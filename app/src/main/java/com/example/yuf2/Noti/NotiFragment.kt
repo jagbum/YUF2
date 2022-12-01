@@ -28,9 +28,7 @@ import com.google.firebase.ktx.Firebase
 class NotiFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
-
     private lateinit var binding : FragmentNotiBinding
-
     private val friendNoti = mutableListOf<FriendNoti>()
     private val commentNoti = mutableListOf<CommentNoti>()
     private val friendNotiKeyList = mutableListOf<String>()

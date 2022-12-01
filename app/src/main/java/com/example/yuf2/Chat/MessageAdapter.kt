@@ -65,7 +65,6 @@ class MessageAdapter(var message_list: java.util.ArrayList<Message>) :
                 ll_message.gravity = Gravity.RIGHT
             } else {
                 ll_message.gravity = Gravity.LEFT
-
             }
         }
     }

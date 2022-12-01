@@ -48,7 +48,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:id="@+id/tv_chat_last"
-                android:text="안녕하세요!! 처음뵙겠습니다. 저희 이번에 프로젝트가요??"></TextView>
+                android:text="내용"></TextView>
         </LinearLayout>
 
         <LinearLayout
